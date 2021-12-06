@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   post 'logout', to: 'main#logout', as: 'logout_page'
 
   get 'register', to: 'main#registerpage', as: 'register_page'
+  post 'register', to: 'main#register'
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

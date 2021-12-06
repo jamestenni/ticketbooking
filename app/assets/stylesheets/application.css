@@ -132,3 +132,7 @@ li.nav-item a {
 .bottomText > * {
   margin-bottom: 0px !important;
 }
+
+.invalid-feedback {
+  text-align: left;
+}

@@ -1,6 +1,6 @@
 class MainController < ApplicationController
   include SessionConcern 
-  before_action :initialize_new_user, only: %i[ loginpage registerpage ]
+  before_action :initialize_new_user, only: %i[ registerpage register ]
   before_action :set_user, only: %i[ mainpage ]
 
   def mainpage
@@ -30,7 +30,22 @@ class MainController < ApplicationController
   end
 
   def registerpage
+  end
 
+  def register
+    @user.username = params[:user][:username]
+    @user.password = params[:user][:password]
+    @user.password_confirmation = params[:user][:password_confirmation]
+    @user.firstname = params[:user][:firstname]
+    @user.lastname = params[:user][:lastname]
+    @user.email = params[:user][:email]
+    @user.birthdate = Date.new(params[:user]["birthdate(1i)"].to_i, params[:user]["birthdate(2i)"].to_i, params[:user]["birthdate(3i)"].to_i)
+
+    if @user.save
+      redirect_to login_page_path, notice: "Registration completed! Now you can login to buy some tickets!"
+    else
+      render :registerpage
+    end
   end
 
   private
@@ -39,6 +54,6 @@ class MainController < ApplicationController
     end
 
     def user_params
-      params.require(:user).permit(:username, :password, :firstname, :lastname, :email, :birthdate)
+      params.permit(:username, :password, :password_confirmation, :firstname, :lastname, :email, :birthdate)
     end
 end
