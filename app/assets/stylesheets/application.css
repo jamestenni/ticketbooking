@@ -13,3 +13,122 @@
  *= require_tree .
  *= require_self
  */
+
+:root {
+  --main-background-color: #6e0a1e;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Roboto", sans-serif !important;
+}
+
+a.nav-link {
+  color: white;
+}
+
+a:visited {
+  text-decoration: none;
+}
+
+#mainnavbar {
+  /* background-color: var(--navbar-color); */
+  background-image: linear-gradient(
+    to right,
+    var(--main-background-color) 5%,
+    black 95%
+  );
+}
+
+.navbar-brand {
+  font-weight: bolder;
+  font-size: 1.5rem;
+}
+
+li.nav-item a {
+  color: white;
+}
+
+/* Login Page */
+.darkBackground {
+  width: 100vw;
+  height: 100vh;
+  background-image: linear-gradient(var(--main-background-color) 5%, black 95%);
+  position: fixed;
+}
+
+.darkBackground .darkBackgroundContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  height: 100%;
+  padding: 0 20px;
+}
+
+.darkBackground .darkBackgroundContainer .centerCard {
+  display: flex;
+  flex-direction: column;
+  background-color: whitesmoke;
+  padding: 1.6rem;
+  box-shadow: 10px 10px 15px rgba(0, 0, 0, 0.5);
+  position: relative;
+  top: -10%;
+  animation: drop 0.4s ease forwards;
+}
+
+#loginCard {
+  width: 400px;
+  height: 600px;
+}
+
+#registerCard {
+  width: 600px;
+}
+
+@keyframes drop {
+  0% {
+  }
+  100% {
+    top: 0%;
+  }
+}
+
+.cardHeading {
+  font-size: 2rem;
+  text-align: center;
+  font-weight: bold;
+}
+
+.darkBackgroundContainer .label-style1 label {
+  text-align: left;
+  margin-bottom: 0.5rem;
+}
+
+.darkBackgroundContainer .label-style1 input {
+  margin: 0.3rem 0;
+}
+
+.submitButton {
+  width: 100%;
+  padding: 0.4rem;
+  background-color: #ff8ba0;
+}
+
+.bottomText {
+  height: 40px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.bottomText > * {
+  margin-bottom: 0px !important;
+}

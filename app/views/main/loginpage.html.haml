@@ -1,0 +1,11 @@
+= render 'navbar'
+
+.darkBackground
+  .darkBackgroundContainer
+    .centerCard#loginCard
+      %h3.cardHeading.mt-4.mb-4 Login
+      .label-style1
+        = render 'loginform'
+      .bottomText.mt-auto
+        %p{style: "color: gray;"} Not a member?
+        %a.ms-1{href: register_page_path, style: "color: blue"} Register Here

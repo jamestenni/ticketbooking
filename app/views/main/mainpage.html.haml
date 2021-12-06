@@ -1,0 +1,11 @@
+= render "navbar"
+
+.darkBackground
+  .darkBackgroundContainer{style: "color: white"}
+    %h1 Main page
+    %h3 isLoggedin = #{@isLoggedIn}
+
+:javascript
+  $(document).ready(function() {
+    $(".HomeNav").addClass("activeNavItem")
+  });

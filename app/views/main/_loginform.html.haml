@@ -1,0 +1,10 @@
+= simple_form_for @user, url: login_page_path() do |f|
+  .form-inputs 
+    = f.input :username
+    = f.input :password
+
+  %h6.text-danger.mt-3 #{alert}
+  -# %h6.text-success.mt-3 #{notice}
+  
+  .form-action
+    = f.button :submit, "Login", class: "submitButton mt-4"

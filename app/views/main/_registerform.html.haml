@@ -1,0 +1,30 @@
+= simple_form_for @user, url: "#" do |f|
+  .form-inputs 
+    = f.input :username, placeholder: "must contain at least 4 characters"
+    -# .form-text{style: "text-align:left"} must contain at least 4 characters
+    = f.input :password, placeholder: "must contain at least 6 characters"
+    -# .form-text{style: "text-align:left"} must contain at least 6 characters
+    
+    %table.twoColumn
+      %tr
+        %td
+          = f.input :firstname
+        %td
+          = f.input :lastname
+
+    = f.input :email, placeholder: "example: test@hotmail.com"
+    = f.input :birthdate
+  
+  %div.d-flex.mt-4
+    %a.btn.me-3{href: login_page_path, style: "margin-top: 24px; width: 16.5rem; border: 1px gray solid"} Cancel
+    .form-action
+      = f.button :submit, "Register", class: "submitButton mt-4", style: "width: 16.5rem; margin-bottom: 0px"
+
+:css
+  .twoColumn td input{
+    width: 16.7rem;
+  }
+
+
+
+

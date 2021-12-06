@@ -1,0 +1,33 @@
+%nav.navbar.navbar-dark.navbar-expand-lg.fixed-top#mainnavbar.ps-2
+  %a.navbar-brand.px-3.py-2.text-light{:href => main_page_path} TicketBooking
+  %button.navbar-toggler{"aria-controls" => "navbarSupportedContent", "aria-expanded" => "false", "aria-label" => "Toggle navigation", "data-bs-target" => "#navbarSupportedContent", "data-bs-toggle" => "collapse", :type => "button"}
+    %span.navbar-toggler-icon
+  - if (!@isLoggedIn) #if not login
+    #navbarSupportedContent.collapse.navbar-collapse
+      %ul.navbar-nav.me-auto.mb-lg-0
+        %li.nav-item.HomeNav
+          %a.btn.btn-sm.py-2.px-3{href: main_page_path} Home
+      %div.mx-2
+        %a.nav-link.btn.btn-outline-danger.btn-sm{href: register_page_path} Register  
+      .mx-2
+        %a.nav-link.btn.btn-danger.btn-sm{href: login_page_path} Login
+  - else #if login
+    #navbarSupportedContent.collapse.navbar-collapse
+      %ul.navbar-nav.me-auto.mb-lg-0
+        %li.nav-item.HomeNav
+          %a.nav-link.btn.btn-sm{href: main_page_path} Home
+        %li.nav-item.ms-3.InventoryNav
+          %a.nav-link.btn.btn-sm{href: "#"} Inventory
+      .mx-2.d-flex.flex-row{style: "color: white"} 
+        %strong.me-2.pt-2 Welcome: 
+        %p.py-2.px-5.mb-0.rounded-pill{style: "background-color: #ffc000; color: black"} #{@user.firstname}
+      .mx-2
+        = button_to "Logout", logout_page_path(), method: "post", class: "nav-link btn btn-danger btn-sm", style: "color: white"
+        -# %a.nav-link.btn.btn-danger.btn-sm{href: logout_page_path} Logout
+
+:css
+  .activeNavItem a{
+    background-color: #fca5af;
+    border-radius: 5px;
+    color: black !important;
+  }
