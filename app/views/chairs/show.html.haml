@@ -1,0 +1,19 @@
+.container.mt-3
+  %p#notice= notice
+
+  %p
+    %b Row:
+    = @chair.row
+  %p
+    %b Column:
+    = @chair.column
+  %p
+    %b Chair type:
+    = @chair.chair_type
+  %p
+    %b Theater:
+    = @chair.theater.id
+
+  = link_to 'Edit', edit_chair_path(@chair)
+  \|
+  = link_to 'Back', chairs_path

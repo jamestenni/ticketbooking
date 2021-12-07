@@ -1,0 +1,24 @@
+.container.mt-3
+  %h1 Listing theaters
+
+  %table
+    %thead
+      %tr
+        %th Name
+        %th Number
+        %th
+        %th
+        %th
+
+    %tbody
+      - @theaters.sort_by(&:number).each do |theater|
+        %tr
+          %td= theater.name
+          %td= theater.number
+          %td= link_to 'Show', theater
+          %td= link_to 'Edit', edit_theater_path(theater)
+          %td= link_to 'Destroy', theater, method: :delete, data: { confirm: 'Are you sure?' }
+
+  %br
+
+  = link_to 'New Theater', new_theater_path

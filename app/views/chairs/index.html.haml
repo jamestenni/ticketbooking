@@ -1,0 +1,28 @@
+.container.mt-3
+  %h1 Listing chairs
+
+  %table
+    %thead
+      %tr
+        %th Theater
+        %th Row
+        %th Column
+        %th Chair type
+        %th
+        %th
+        %th
+
+    %tbody
+      - @chairs.each do |chair|
+        %tr
+          %td= chair.theater.number
+          %td= chair.row
+          %td= chair.column
+          %td= chair.chair_type
+          %td= link_to 'Show', chair
+          %td= link_to 'Edit', edit_chair_path(chair)
+          %td= link_to 'Destroy', chair, method: :delete, data: { confirm: 'Are you sure?' }
+
+  %br
+
+  = link_to 'New Chair', new_chair_path

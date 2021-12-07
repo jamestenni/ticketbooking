@@ -1,0 +1,34 @@
+.container.mt-3
+  %p#notice= notice
+
+  %p
+    %b Name:
+    = @theater.name
+  %p
+    %b Number:
+    = @theater.number
+  %div
+    %p 
+      %b Chair:
+    %table.table.table-striped.table-sm
+      %thead
+        %tr
+          %th Row
+          %th Column
+          %th Chair type
+          -# %th
+          -# %th
+          -# %th
+      %tbody
+      - @chairs.each do |chair|
+        %tr
+          %td= chair.row
+          %td= chair.column
+          %td= chair.chair_type
+          -# %td= link_to 'Show', chair
+          -# %td= link_to 'Edit', edit_chair_path(chair)
+          -# %td= link_to 'Destroy', chair, method: :delete, data: { confirm: 'Are you sure?' }
+
+  = link_to 'Edit', edit_theater_path(@theater)
+  \|
+  = link_to 'Back', theaters_path

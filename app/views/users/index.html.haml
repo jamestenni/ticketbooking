@@ -1,11 +1,10 @@
 .container.mt-3
   %h1 Listing users
 
-  %table
+  %table.table.table-striped.table-sm
     %thead
       %tr
         %th Username
-        %th Password digest
         %th Firstname
         %th Lastname
         %th Email
@@ -18,7 +17,6 @@
       - @users.each do |user|
         %tr
           %td= user.username
-          %td= user.password_digest
           %td= user.firstname
           %td= user.lastname
           %td= user.email

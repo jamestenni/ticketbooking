@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_12_07_071024) do
+ActiveRecord::Schema.define(version: 2021_12_07_094026) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -40,6 +40,17 @@ ActiveRecord::Schema.define(version: 2021_12_07_071024) do
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
+  create_table "chairs", force: :cascade do |t|
+    t.string "row"
+    t.integer "column"
+    t.integer "chair_type"
+    t.integer "theater_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index "\"row\", \"column\", \"theater\"", name: "index_chairs_on_row_and_column_and_theater", unique: true
+    t.index ["theater_id"], name: "index_chairs_on_theater_id"
+  end
+
   create_table "movies", force: :cascade do |t|
     t.string "name"
     t.integer "movie_type"
@@ -47,6 +58,13 @@ ActiveRecord::Schema.define(version: 2021_12_07_071024) do
     t.integer "duration"
     t.date "date_in"
     t.date "date_out"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "theaters", force: :cascade do |t|
+    t.string "name"
+    t.integer "number"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -64,4 +82,5 @@ ActiveRecord::Schema.define(version: 2021_12_07_071024) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "chairs", "theaters"
 end

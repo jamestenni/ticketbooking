@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :chairs
+  resources :theaters
   resources :movies
   resources :users
 

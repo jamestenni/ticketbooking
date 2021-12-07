@@ -1,0 +1,26 @@
+-# frozen_string_literal: true
+= simple_form_for(@chair) do |f|
+  = f.error_notification
+  = f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present?
+
+  .form-inputs#createChairForm
+    -# = f.input :row
+    = f.label :row
+    = f.select :row, options_for_select(("A".."M").to_a, selected: "A")
+    -# = f.input :column
+    = f.label :column
+    = f.select :column, options_for_select((1..10).to_a, selected: 1)
+    = f.label :chair_type
+    = f.select :chair_type, options_for_select([['Standard', 'Standard'], ['Premium', 'Premium']], selected: @chair.chair_type)
+
+    = f.association :theater, label_method: :number
+
+  .form-actions
+    = f.button :submit, class: "btn btn-outline-dark my-3 ms-1"
+
+:css
+  #createChairForm select {
+    height: 2rem;
+    width: 8rem;
+    padding-left: 0.4rem;
+  }
