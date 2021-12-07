@@ -1,0 +1,30 @@
+.container.mt-3
+  %p#notice= notice
+
+  %p
+    %b Name:
+    = @movie.name
+  %p
+    %b Movie type:
+    = @movie.movie_type
+  %p
+    %b Description:
+    = @movie.description
+  %p
+    %b Duration:
+    = @movie.duration
+  - if @movie.poster.attached?
+    %p
+      %b Poster: 
+    %div
+      = image_tag (@movie.poster), style: "width: 300px; height: 400px"
+  %p
+    %b Date in:
+    = @movie.date_in
+  %p
+    %b Date out:
+    = @movie.date_out
+
+  = link_to 'Edit', edit_movie_path(@movie)
+  
+  = link_to 'Back', movies_path

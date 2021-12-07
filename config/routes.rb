@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :movies
   resources :users
 
   get 'main', to: 'main#mainpage', as: 'main_page'
