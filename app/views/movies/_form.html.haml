@@ -10,8 +10,8 @@
     = f.input :description
     = f.input :duration
     = f.input :poster
-    = f.input :date_in
-    = f.input :date_out
+    = f.input :date_in, as: :date, start_year: Date.today.year-5, end_year: Date.today.year+2, discard_day: false, order: [:day, :month, :year]
+    = f.input :date_out, as: :date, start_year: Date.today.year-5, end_year: Date.today.year+2, discard_day: false, order: [:day, :month, :year]
 
   .form-actions
     = f.button :submit, class: "btn btn-outline-dark my-3 ms-1"
