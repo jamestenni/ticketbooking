@@ -1,0 +1,24 @@
+-# frozen_string_literal: true
+= simple_form_for(@inventory) do |f|
+  = f.error_notification
+  = f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present?
+
+  .form-inputs
+    = f.association :user, label_method: :username
+    = f.association :product, label_method: :label_product, wrapper_html: {id: "productInventorySelection"}
+    = f.input :quantity, wrapper_html: {id: "quantityInventoryInput"}
+
+  .form-actions
+    = f.button :submit, class: "btn btn-outline-dark my-3 ms-1"
+
+:javascript
+  $(document).ready(function(){
+    $("#productInventorySelection select").change(function() {
+      if ($("#productInventorySelection select option:selected").text().indexOf("Ticket") != -1) {
+        $("#quantityInventoryInput input").prop('value', 1)
+        $("#quantityInventoryInput input").attr("readonly", true);
+      } else {
+        $("#quantityInventoryInput input").attr("readonly", false);
+      }
+    });
+  });
