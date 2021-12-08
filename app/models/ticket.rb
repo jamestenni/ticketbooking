@@ -1,0 +1,3 @@
+class Ticket < Product
+
+end
