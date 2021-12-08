@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :timetables
   resources :chairs
   resources :theaters
   resources :movies

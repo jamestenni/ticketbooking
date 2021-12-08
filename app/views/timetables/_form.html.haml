@@ -1,0 +1,12 @@
+-# frozen_string_literal: true
+= simple_form_for(@timetable) do |f|
+  = f.error_notification
+  = f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present?
+
+  .form-inputs
+    = f.association :movie
+    = f.association :theater, label_method: :number
+    = f.input :datetime_start
+
+  .form-actions
+    = f.button :submit, class: "btn btn-outline-dark my-3 ms-1"

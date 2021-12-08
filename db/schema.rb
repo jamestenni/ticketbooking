@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_12_07_094026) do
+ActiveRecord::Schema.define(version: 2021_12_08_131848) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -47,7 +47,6 @@ ActiveRecord::Schema.define(version: 2021_12_07_094026) do
     t.integer "theater_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index "\"row\", \"column\", \"theater\"", name: "index_chairs_on_row_and_column_and_theater", unique: true
     t.index ["theater_id"], name: "index_chairs_on_theater_id"
   end
 
@@ -69,6 +68,16 @@ ActiveRecord::Schema.define(version: 2021_12_07_094026) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "timetables", force: :cascade do |t|
+    t.datetime "datetime_start"
+    t.integer "movie_id", null: false
+    t.integer "theater_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["movie_id"], name: "index_timetables_on_movie_id"
+    t.index ["theater_id"], name: "index_timetables_on_theater_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "username"
     t.string "password_digest"
@@ -83,4 +92,6 @@ ActiveRecord::Schema.define(version: 2021_12_07_094026) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "chairs", "theaters"
+  add_foreign_key "timetables", "movies"
+  add_foreign_key "timetables", "theaters"
 end

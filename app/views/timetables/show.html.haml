@@ -1,0 +1,21 @@
+.container.mt-3
+  %p#notice= notice
+
+  %p
+    %b Datetime start:
+    = @timetable.datetime_start
+
+  %p
+    %b Datetime finish (include break):
+    = @timetable.get_datetime_finish(true)
+
+  %p
+    %b Movie:
+    = @timetable.movie.name
+  %p
+    %b Theater:
+    = @timetable.theater.number
+
+  = link_to 'Edit', edit_timetable_path(@timetable)
+  \|
+  = link_to 'Back', timetables_path
