@@ -1,17 +1,11 @@
 class Theater < ApplicationRecord
   validates :name, presence: true
-  validates :number, presence: true, uniqueness: true
-  validate :number_negative?
+  validates :number, presence: true, uniqueness: true, numericality: {only_integer: true, greater_than: 0}
+  # validate :number_negative?
 
   has_many :chairs
   has_many :timetables
   has_many :movies, :through => :timetables
-
-  def number_negative?
-    if number.to_i < 1
-      errors.add :number, "must be positive integer"
-    end
-  end
 
   # This function will retrieve all chair in the specific theater number
   def get_chairs
