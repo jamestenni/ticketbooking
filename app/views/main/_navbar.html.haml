@@ -20,7 +20,7 @@
           %a.nav-link.btn.btn-sm{href: "#"} Inventory
       .mx-2.d-flex.flex-row{style: "color: white"} 
         %strong.me-2.pt-2 Welcome: 
-        %p.py-2.px-5.mb-0.rounded-pill{style: "background-color: #ffc000; color: black"} #{@user.firstname}
+        %p.py-2.px-3.mb-0.rounded-pill{style: "background-color: #ffc000; color: black"} #{@user.firstname}
       .mx-2
         = button_to "Logout", logout_page_path(), method: "post", class: "nav-link btn btn-danger btn-sm", style: "color: white"
         -# %a.nav-link.btn.btn-danger.btn-sm{href: logout_page_path} Logout

@@ -1,0 +1,54 @@
+:root {
+  --movie-card-border-radius: 20px;
+}
+
+.movieCard {
+  width: 280px;
+  height: 520px;
+  border-radius: var(--movie-card-border-radius);
+  /* border: 1px solid white; */
+  position: relative;
+  margin: auto;
+}
+
+.movieCard:hover {
+  background-color: #720a00;
+}
+
+.movieCard img {
+  overflow: hidden;
+  border-top-left-radius: var(--movie-card-border-radius);
+  border-top-right-radius: var(--movie-card-border-radius);
+}
+
+.movieCard .movieDateIn {
+  color: rgb(255, 191, 31);
+  padding-left: 0.8rem;
+  padding-right: 0.8rem;
+}
+
+.movieCard .movieName {
+  color: white;
+  text-shadow: 2px 2px #333333;
+  padding-left: 0.8rem;
+  padding-right: 0.8rem;
+}
+
+.movieCard .footermovieCard {
+  position: absolute;
+  bottom: 0.8rem;
+  left: 0.8rem;
+}
+
+.movieCard .footermovieCard .smallIcon {
+  background-color: #d3d3d3;
+  border: 1px white solid;
+  text-align: center;
+  border-radius: 10px;
+}
+
+.movieCard .footermovieCard .smallIcon p {
+  margin-bottom: 0px;
+  padding: 0.2rem 0.8rem;
+  font-size: 0.7rem;
+}
