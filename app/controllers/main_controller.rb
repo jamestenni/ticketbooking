@@ -5,6 +5,8 @@ class MainController < ApplicationController
 
   def mainpage
     @isLoggedIn = has_logged_in
+    @movies_now_showing = Movie.get_now_showing.in_groups_of(3, false)
+
   end
 
   def loginpage

@@ -1,11 +1,44 @@
 = render "navbar"
 
 .darkBackground
-  .darkBackgroundContainer{style: "color: white"}
-    %h1 Main page
-    %h3 isLoggedin = #{@isLoggedIn}
+  .darkBackgroundContainer#mainBg
+    .ps-3
+      %h3#NowShowingTitle.mb-4 Now showing
+      %table#MovieTable
+        %tbody
+        - @movies_now_showing.each do |movies|
+          %tr
+          - movies.each do |movie|
+            - if !movie.nil?
+              %td= render "moviecard", movie: movie
+
+    -# %h5 isLoggedin = #{@isLoggedIn}
+
+:css
+  #NowShowingTitle {
+    text-shadow: 2px 2px black;
+    padding-top: 80px;
+    color: white;
+  }
+
+  #MovieTable {
+    overflow-x: auto;
+    width: 100%;
+    margin-bottom: 100px;
+  }
+
+  #MovieTable tr,td {
+    padding-bottom: 3rem;
+  }
 
 :javascript
   $(document).ready(function() {
     $(".HomeNav").addClass("activeNavItem")
+
+    let window_h = $(window).height();
+    let backgorund_h = $("#mainBg").height();
+
+    if (backgorund_h < window_h) {
+      $(".darkBackground").addClass("full-lock-screen")
+    }
   });

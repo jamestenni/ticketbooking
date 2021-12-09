@@ -24,6 +24,10 @@
   box-sizing: border-box;
 }
 
+html {
+  overflow-y: scroll;
+}
+
 body {
   font-family: "Roboto", sans-serif !important;
 }
@@ -56,20 +60,26 @@ li.nav-item a {
 
 /* Login Page */
 .darkBackground {
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
   background-image: linear-gradient(var(--main-background-color) 5%, black 95%);
+}
+
+.darkBackground.full-lock-screen {
+  height: 100vh;
   position: fixed;
 }
 
 .darkBackground .darkBackgroundContainer {
   display: flex;
   flex-direction: column;
+  height: 100%;
+  padding: 0 20px;
+}
+
+.flex-center {
   align-items: center;
   justify-content: center;
   text-align: center;
-  height: 100%;
-  padding: 0 20px;
 }
 
 .darkBackground .darkBackgroundContainer .centerCard {
