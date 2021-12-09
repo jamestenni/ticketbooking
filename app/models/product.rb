@@ -4,6 +4,7 @@ class Product < ApplicationRecord
 
   has_many :inventories
   has_many :users, :through => :inventories
+  has_many :orderline_items
 
   def label_product
     if self.type == "Beverage"

@@ -1,0 +1,13 @@
+.container.mt-3
+  %p#notice= notice
+
+  %p
+    %b Datetime place:
+    = @order.datetime_place
+  %p
+    %b Username:
+    = @order.user.username
+
+  = link_to 'Edit', edit_order_path(@order)
+  \|
+  = link_to 'Back', orders_path

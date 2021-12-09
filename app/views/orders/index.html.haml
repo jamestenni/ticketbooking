@@ -1,0 +1,24 @@
+.container.mt-3
+  %h1 Listing orders
+
+  %table
+    %thead
+      %tr
+        %th Username
+        %th Datetime place
+        %th
+        %th
+        %th
+
+    %tbody
+      - @orders.each do |order|
+        %tr
+          %td= order.user.username
+          %td= order.datetime_place          
+          %td= link_to 'Show', order
+          %td= link_to 'Edit', edit_order_path(order)
+          %td= link_to 'Destroy', order, method: :delete, data: { confirm: 'Are you sure?' }
+
+  %br
+
+  = link_to 'New Order', new_order_path

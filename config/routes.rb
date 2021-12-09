@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :orderline_items
+  resources :orders
   resources :inventories
   resources :products
   resources :timetables
