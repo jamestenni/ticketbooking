@@ -6,7 +6,7 @@ class Movie < ApplicationRecord
   validate :date_out_after_date_in?
 
   has_one_attached :poster
-  has_many :timetables
+  has_many :timetables, dependent: :destroy
   has_many :theaters, :through => :timetables
 
   enum movie_type: {

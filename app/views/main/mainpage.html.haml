@@ -2,15 +2,13 @@
 
 .darkBackground
   .darkBackgroundContainer#mainBg
-    .ps-3
-      %h3#NowShowingTitle.mb-4 Now showing
+    %h3#NowShowingTitle.mb-4.ms-4 Now showing
+    .ps-3{style: "overflow: scroll;"}
       %table#MovieTable
         %tbody
-        - @movies_now_showing.each do |movies|
           %tr
-          - movies.each do |movie|
-            - if !movie.nil?
-              %td= render "moviecard", movie: movie
+          - @movies_now_showing.each do |movie|
+            %td= render "moviecard", movie: movie
 
     -# %h5 isLoggedin = #{@isLoggedIn}
 
@@ -22,13 +20,11 @@
   }
 
   #MovieTable {
-    overflow-x: auto;
-    width: 100%;
     margin-bottom: 100px;
   }
 
   #MovieTable tr,td {
-    padding-bottom: 3rem;
+    padding-right: 0.7rem;
   }
 
 :javascript
