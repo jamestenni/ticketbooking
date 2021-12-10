@@ -1,0 +1,68 @@
+#seatTypeInfoContainer.mt-2
+  .seatInfo#standardSeatContainer
+    .seat-icon.small.standard
+    .seatTypeContainer.ms-5
+      %b Standard: 
+      %p 160 THB
+  .seatInfo#premiumSeatContainer.ms-5
+    .seat-icon.small.premium
+    .seatTypeContainer.ms-5
+      %b Premium: 
+      %p 180 THB
+
+#seatPanel
+  #screenRectangle
+    %p SCREEN
+  = form_with url: "#", method: :get do |form|
+    %table#seatTable{style: "color: white"}
+      %tbody 
+        - tickets.each do |row, tickets|
+          %tr
+            %td.tdhead= row
+            - tickets.each do |ticket|
+              - ticket_status = ticket.get_status()
+              - if ticket_status == "Reserved"
+                %td.tdchild
+                  .customCheckBoxContainer
+                    = form.check_box :"ticket-#{ticket.id}", disabled: true
+                    %span.customCheckBox.occupied
+                      %p= ticket.chair.column
+              - else
+                - if ticket.chair.chair_type == "Standard"
+                  %td.tdchild
+                    .customCheckBoxContainer.cursor-pointer
+                      = form.check_box :"ticket-#{ticket.id}", class: "checkbox", "data-seat-type": "standard"
+                      %span.customCheckBox.standard
+                        %p= ticket.chair.column
+
+                - elsif ticket.chair.chair_type == "Premium"
+                  %td.tdchild
+                    .customCheckBoxContainer.cursor-pointer
+                      = form.check_box :"ticket-#{ticket.id}", class: "checkbox", "data-seat-type": "premium"
+                      %span.customCheckBox.premium
+                        %p= ticket.chair.column
+    #summaryContainer.mt-4
+      #priceContainer
+        %h5 Total:
+        %h5#priceLabel.ms-2 XXX
+        %h5.ms-2 THB
+      - if @isLoggedIn
+        #submitContainer
+          = form.submit "Next", class: "submit-form-button"
+      - else
+        #submitContainer
+          = form.submit "Next", class: "submit-form-button", disabled: true
+          %p.mt-1 You need to login to proceed
+
+:javascript
+  $(document).ready(function() {
+    let premium_seat_count = 0
+    let standard_seat_count = 0
+
+    
+
+
+
+
+
+  });

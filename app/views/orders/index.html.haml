@@ -6,6 +6,7 @@
       %tr
         %th Username
         %th Datetime place
+        %th Status
         %th
         %th
         %th
@@ -14,7 +15,8 @@
       - @orders.each do |order|
         %tr
           %td= order.user.username
-          %td= order.datetime_place          
+          %td= order.datetime_place 
+          %td= order.status         
           %td= link_to 'Show', order
           %td= link_to 'Edit', edit_order_path(order)
           %td= link_to 'Destroy', order, method: :delete, data: { confirm: 'Are you sure?' }

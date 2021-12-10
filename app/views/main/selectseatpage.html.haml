@@ -26,6 +26,7 @@
           %h5= "Theater: #{@timetable.theater.number} - #{@timetable.theater.name}"
           %h5= "Time: #{@timetable.get_show_time}"
         #seatSelectWrapper
+          = render "seatpanel", tickets: @tickets
           
 
 :javascript

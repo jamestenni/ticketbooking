@@ -7,6 +7,9 @@
   %p
     %b Username:
     = @order.user.username
+  %p
+    %b Status:
+    = @order.status
 
   = link_to 'Edit', edit_order_path(@order)
   \|

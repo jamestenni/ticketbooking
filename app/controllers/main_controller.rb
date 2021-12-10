@@ -1,7 +1,7 @@
 class MainController < ApplicationController
   include SessionConcern 
   before_action :initialize_new_user, only: %i[ registerpage register ]
-  before_action :set_user, only: %i[ mainpage ]
+  before_action :set_user, only: %i[ mainpage movietimetablepage selectseatpage]
 
   def mainpage
     @isLoggedIn = has_logged_in
@@ -51,13 +51,18 @@ class MainController < ApplicationController
   end
 
   def movietimetablepage
+    @isLoggedIn = has_logged_in
     @movie = Movie.find(params[:id])
     @timetable = @movie.get_showtime_7days
   end
 
   def selectseatpage
+    @isLoggedIn = has_logged_in
     @movie = Movie.find(params[:m_id])
     @timetable = Timetable.find(params[:s_id])
+    @tickets = @timetable.get_tickets
+
+    puts  "******************************** isLogin #{@isLogin}"
   end
 
   private

@@ -6,6 +6,8 @@
   .form-inputs
     = f.input :datetime_place
     = f.association :user, label_method: :username
+    = f.label :status
+    = f.select :status, options_for_select([['Waiting', 'waiting'], ['Completed', 'completed'], ['Canceled', 'canceled']], selected: @order.status)
 
   .form-actions
     = f.button :submit, class: "btn btn-outline-dark my-3 ms-1"

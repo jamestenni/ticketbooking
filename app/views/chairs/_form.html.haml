@@ -6,10 +6,10 @@
   .form-inputs#createChairForm
     -# = f.input :row
     = f.label :row
-    = f.select :row, options_for_select(("A".."M").to_a, selected: "A")
+    = f.select :row, options_for_select(("A".."M").to_a, selected: @chair.row)
     -# = f.input :column
     = f.label :column
-    = f.select :column, options_for_select((1..10).to_a, selected: 1)
+    = f.select :column, options_for_select((1..10).to_a, selected: @chair.column)
     = f.label :chair_type
     = f.select :chair_type, options_for_select([['Standard', 'Standard'], ['Premium', 'Premium']], selected: @chair.chair_type)
 

@@ -88,4 +88,22 @@ class Timetable < ApplicationRecord
     return self.datetime_start.to_time.strftime('%H:%M')
   end
 
+  def get_tickets()
+    #assume every theater now has equal chairs (4 row A,B,C,D and each row has 5 columns)
+    tickets = self.tickets.joins(:chair).order("row ASC, column ASC")
+    h = {}
+    tickets.each do |ticket|
+      chair_row = ticket.chair.row
+      chair_column = ticket.chair.column
+      if !h.has_key?(chair_row)
+        h[chair_row] = []
+      end
+      h[chair_row].append(ticket)
+    end
+    h = h.sort_by{|k,v| k}.reverse
+    return h
+  end
+
+  #------------------------------------------------ 
+
 end

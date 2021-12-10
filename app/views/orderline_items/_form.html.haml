@@ -4,10 +4,26 @@
   = f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present?
 
   .form-inputs
-    = f.association :order
-    = f.association :ticket
-    = f.input :price
-    = f.input :quantity
+    = f.association :order, label_method: :id
+    = f.association :ticket, label_method: :get_label, wrapper_html: {id: "ticketSelection"}
+    = f.input :price, input_html: {readonly: true}, wrapper_html: {id: "priceInput"}
+    = f.input :quantity, input_html: {readonly: true}, wrapper_html: {id: "quantityInput"}
 
   .form-actions
     = f.button :submit
+
+:javascript
+  $(document).ready(function() {
+    $("#quantityInput input").prop('value', 1)
+
+    $("#ticketSelection select").change(function() {
+      let ticket_label = $("#ticketSelection select option:selected").text()
+      let price = 0
+      if (ticket_label.search("Premium") != -1) {
+        price = 180
+      } else {
+        price = 160
+      }
+      $("#priceInput input").prop('value', price)
+    });
+  });

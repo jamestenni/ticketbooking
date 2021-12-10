@@ -1,0 +1,227 @@
+#seatTypeInfoContainer {
+  width: 100%;
+  height: 100px;
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  /* border: 1px solid #555555; */
+  color: black;
+  border-radius: 20px;
+  padding: 15px;
+}
+
+#seatTypeInfoContainer p,
+b {
+  margin-bottom: 0px;
+  color: white;
+}
+
+.seatInfo {
+  display: flex;
+  align-items: center;
+  padding: 10px 40px;
+  border: 1px solid #555555;
+  border-radius: 20px;
+}
+
+.seat-icon.small {
+  width: 25px;
+  height: 25px;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+.seat-icon {
+  width: 40px;
+  height: 40px;
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+}
+
+.seat-icon.premium {
+  background-color: #e75480;
+}
+
+.seat-icon.premium:hover {
+  background-color: #b44479;
+  cursor: pointer;
+}
+
+.seat-icon.standard {
+  background-color: #ff964f;
+}
+
+.seat-icon.standard:hover {
+  background-color: #ee7600;
+  cursor: pointer;
+}
+
+.seat-icon.occupied {
+  background-color: #767676;
+}
+
+.seat-icon.flex-center {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+}
+
+#seatPanel {
+  margin-bottom: 100px;
+  width: 100%;
+  height: 500px;
+  /* border: 1px solid grey; */
+  padding: 20px;
+  border-bottom: 1px solid white;
+}
+
+#seatPanel #screenRectangle {
+  height: 30px;
+  border: 1px solid #ffdf9e;
+  border-radius: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 15px;
+}
+
+#seatPanel #screenRectangle p {
+  color: white;
+  margin-bottom: 0px;
+}
+
+#seatTable {
+  width: 100%;
+  height: 100%;
+}
+
+#seatTable th,
+#seatTable td {
+  padding: 20px;
+}
+
+#seatTable tr td.tdhead {
+  font-weight: bolder;
+  font-size: 1.3rem;
+  text-align: center;
+}
+
+#summaryContainer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px;
+}
+
+#seatPanel p {
+  margin-bottom: 0px;
+}
+
+/* ---------------- Custom Checkbox ---------------- */
+/* Hide the browser's default checkbox */
+.customCheckBoxContainer {
+  display: block;
+  position: relative;
+  cursor: pointer;
+  top: -20px;
+}
+
+/* .customCheckBoxContainer.cursor-pointer {
+  cursor: pointer;
+} */
+
+.customCheckBoxContainer input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 35px;
+  width: 35px;
+  z-index: 2;
+  /* top: -15px; */
+}
+
+/* Create a custom checkbox */
+.customCheckBox {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 35px;
+  height: 35px;
+  opacity: 1;
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
+  z-index: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.customCheckBox p {
+  font-size: 1.2rem;
+  text-align: center;
+}
+
+.customCheckBoxContainer .customCheckBox.standard {
+  background-color: #ff964f;
+}
+
+.customCheckBoxContainer .customCheckBox.premium {
+  background-color: #e75480;
+}
+
+.customCheckBoxContainer .customCheckBox.occupied {
+  background-color: #767676;
+}
+
+/* On mouse-over */
+.customCheckBoxContainer:hover input ~ .customCheckBox.standard {
+  background-color: #ee7600;
+}
+
+.customCheckBoxContainer:hover input ~ .customCheckBox.premium {
+  background-color: #b44479;
+}
+
+/* On checked */
+.customCheckBoxContainer input:checked ~ .customCheckBox {
+  /* background-color: #2196f3 !important; */
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
+  border: 4px solid yellow;
+}
+
+/* ----------------------------------------------- */
+
+.submit-form-button {
+  padding: 8px 30px;
+  background-color: #dcfffb;
+  border-radius: 10px;
+  border: 0;
+}
+
+.submit-form-button:hover {
+  background-color: #000080;
+  color: white;
+}
+
+.submit-form-button:disabled {
+  background-color: grey;
+  color: white;
+}
+
+#priceContainer {
+  display: flex;
+}
+
+#submitContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#submitContainer p {
+  text-align: center;
+  color: red;
+}
