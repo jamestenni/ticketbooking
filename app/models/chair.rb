@@ -18,18 +18,4 @@ class Chair < ApplicationRecord
     end
   end
 
-  def get_status(timetable_id)
-    p = self.products.find_by(timetable_id: timetable_id)
-    if p.nil?
-      return "No product was created for this chair"
-    else
-      p_id = p.id #get the product id
-      inventory = Inventory.find_by(product_id: p_id)
-      if inventory.nil?
-        return "Available"
-      else
-        return "Reserved"
-      end
-    end
-  end
 end

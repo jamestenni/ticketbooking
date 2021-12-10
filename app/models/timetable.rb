@@ -1,5 +1,6 @@
 class Timetable < ApplicationRecord
   BREAK_TIME_MIN = 10
+  after_create :create_tickets_when_create_timetable
 
   belongs_to :movie
   belongs_to :theater
@@ -13,7 +14,12 @@ class Timetable < ApplicationRecord
 
   # ------------------------- call back ------------------------ 
   def create_tickets_when_create_timetable
-    return Chair.where("theater_id = ?, #{self.theater.id}").size
+    # Fetch all chairs in that theater
+    chairs_in_theater = Chair.where("theater_id = ?", self.theater.id)
+    chairs_in_theater.each do |chair|
+      Ticket.create(chair_id: chair.id, timetable_id: self.id, price: chair.price)
+    end
+    puts "Create Ticket Completes!"
   end
 
   # ------------------------- validator ------------------------ 
