@@ -64,6 +64,6 @@ class InventoriesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def inventory_params
-      params.require(:inventory).permit(:user_id, :product_id, :quantity)
+      params.require(:inventory).permit(:user_id, :ticket_id, :quantity)
     end
 end

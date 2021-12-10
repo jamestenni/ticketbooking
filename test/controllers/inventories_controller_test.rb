@@ -17,7 +17,7 @@ class InventoriesControllerTest < ActionDispatch::IntegrationTest
 
   test "should create inventory" do
     assert_difference('Inventory.count') do
-      post inventories_url, params: { inventory: { product_id: @inventory.product_id, quantity: @inventory.quantity, user_id: @inventory.user_id } }
+      post inventories_url, params: { inventory: { quantity: @inventory.quantity, ticket_id: @inventory.ticket_id, user_id: @inventory.user_id } }
     end
 
     assert_redirected_to inventory_url(Inventory.last)
@@ -34,7 +34,7 @@ class InventoriesControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update inventory" do
-    patch inventory_url(@inventory), params: { inventory: { product_id: @inventory.product_id, quantity: @inventory.quantity, user_id: @inventory.user_id } }
+    patch inventory_url(@inventory), params: { inventory: { quantity: @inventory.quantity, ticket_id: @inventory.ticket_id, user_id: @inventory.user_id } }
     assert_redirected_to inventory_url(@inventory)
   end
 

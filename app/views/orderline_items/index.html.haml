@@ -1,30 +1,27 @@
-.container.mt-3
-  %h1 Listing orderline_items
+%h1 Listing orderline_items
 
-  %table
-    %thead
+%table
+  %thead
+    %tr
+      %th Order
+      %th Ticket
+      %th Price
+      %th Quantity
+      %th
+      %th
+      %th
+
+  %tbody
+    - @orderline_items.each do |orderline_item|
       %tr
-        %th Order_id
-        %th Username
-        %th Product
-        %th Price
-        %th Quantity
-        %th
-        %th
-        %th
+        %td= orderline_item.order
+        %td= orderline_item.ticket
+        %td= orderline_item.price
+        %td= orderline_item.quantity
+        %td= link_to 'Show', orderline_item
+        %td= link_to 'Edit', edit_orderline_item_path(orderline_item)
+        %td= link_to 'Destroy', orderline_item, method: :delete, data: { confirm: 'Are you sure?' }
 
-    %tbody
-      - @orderline_items.each do |orderline_item|
-        %tr
-          %td= orderline_item.order.id
-          %td= orderline_item.order.user.username
-          %td= orderline_item.product.label_product()
-          %td= orderline_item.price
-          %td= orderline_item.quantity
-          %td= link_to 'Show', orderline_item
-          %td= link_to 'Edit', edit_orderline_item_path(orderline_item)
-          %td= link_to 'Destroy', orderline_item, method: :delete, data: { confirm: 'Are you sure?' }
+%br
 
-  %br
-
-  = link_to 'New Orderline item', new_orderline_item_path
+= link_to 'New Orderline item', new_orderline_item_path

@@ -1,9 +1,7 @@
-class Ticket < Product
-  def is_owned?
-    return self.users.size == 1
-  end
+class Ticket < ApplicationRecord
+  belongs_to :chair
+  belongs_to :timetable
 
-  def is_available?
-    return self.users.size == 0
-  end
+  has_one :inventory
+  has_many :orderline_items
 end

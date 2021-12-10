@@ -9,6 +9,15 @@ class Timetable < ApplicationRecord
   validate :datetime_finish_overlap_after?
   validate :datetime_start_within_date_in_and_date_out?
 
+  has_many :tickets, dependent: :destroy
+
+  # ------------------------- call back ------------------------ 
+  def create_tickets_when_create_timetable
+    return Chair.where("theater_id = ?, #{self.theater.id}").size
+  end
+
+  # ------------------------- validator ------------------------ 
+
   def datetime_start_overlap_before?
     if self.movie.nil? or self.theater.nil?
       return
@@ -47,6 +56,7 @@ class Timetable < ApplicationRecord
     end
   end
 
+  #------------------------------------------------ 
   #this function return the previous showing list
   def get_before_showing()
     return Timetable.where("theater_id = ? AND datetime_start < ? AND id != ?", self.theater.id, self.datetime_start, self.id).order("datetime_start DESC").limit(1)

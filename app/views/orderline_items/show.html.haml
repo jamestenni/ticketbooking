@@ -1,19 +1,18 @@
-.container.mt-3
-  %p#notice= notice
+%p#notice= notice
 
-  %p
-    %b Order:
-    = @orderline_item.order
-  %p
-    %b Product:
-    = @orderline_item.product
-  %p
-    %b Price:
-    = @orderline_item.price
-  %p
-    %b Quantity:
-    = @orderline_item.quantity
+%p
+  %b Order:
+  = @orderline_item.order
+%p
+  %b Ticket:
+  = @orderline_item.ticket
+%p
+  %b Price:
+  = @orderline_item.price
+%p
+  %b Quantity:
+  = @orderline_item.quantity
 
-  = link_to 'Edit', edit_orderline_item_path(@orderline_item)
-  \|
-  = link_to 'Back', orderline_items_path
+= link_to 'Edit', edit_orderline_item_path(@orderline_item)
+\|
+= link_to 'Back', orderline_items_path

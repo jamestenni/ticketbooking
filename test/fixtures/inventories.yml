@@ -2,10 +2,10 @@
 
 one:
   user: one
-  product: one
+  ticket: one
   quantity: 1
 
 two:
   user: two
-  product: two
+  ticket: two
   quantity: 1

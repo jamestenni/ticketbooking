@@ -2,12 +2,12 @@
 
 one:
   order: one
-  product: one
+  ticket: one
   price: 1.5
   quantity: 1
 
 two:
   order: two
-  product: two
+  ticket: two
   price: 1.5
   quantity: 1

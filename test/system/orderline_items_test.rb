@@ -16,8 +16,8 @@ class OrderlineItemsTest < ApplicationSystemTestCase
 
     fill_in "Order", with: @orderline_item.order_id
     fill_in "Price", with: @orderline_item.price
-    fill_in "Product", with: @orderline_item.product_id
     fill_in "Quantity", with: @orderline_item.quantity
+    fill_in "Ticket", with: @orderline_item.ticket_id
     click_on "Create Orderline item"
 
     assert_text "Orderline item was successfully created"
@@ -30,8 +30,8 @@ class OrderlineItemsTest < ApplicationSystemTestCase
 
     fill_in "Order", with: @orderline_item.order_id
     fill_in "Price", with: @orderline_item.price
-    fill_in "Product", with: @orderline_item.product_id
     fill_in "Quantity", with: @orderline_item.quantity
+    fill_in "Ticket", with: @orderline_item.ticket_id
     click_on "Update Orderline item"
 
     assert_text "Orderline item was successfully updated"

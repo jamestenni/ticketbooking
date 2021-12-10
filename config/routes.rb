@@ -1,8 +1,8 @@
 Rails.application.routes.draw do
   resources :orderline_items
-  resources :orders
   resources :inventories
-  resources :products
+  resources :tickets
+  resources :orders
   resources :timetables
   resources :chairs
   resources :theaters

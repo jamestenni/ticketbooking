@@ -14,8 +14,8 @@ class InventoriesTest < ApplicationSystemTestCase
     visit inventories_url
     click_on "New Inventory"
 
-    fill_in "Product", with: @inventory.product_id
     fill_in "Quantity", with: @inventory.quantity
+    fill_in "Ticket", with: @inventory.ticket_id
     fill_in "User", with: @inventory.user_id
     click_on "Create Inventory"
 
@@ -27,8 +27,8 @@ class InventoriesTest < ApplicationSystemTestCase
     visit inventories_url
     click_on "Edit", match: :first
 
-    fill_in "Product", with: @inventory.product_id
     fill_in "Quantity", with: @inventory.quantity
+    fill_in "Ticket", with: @inventory.ticket_id
     fill_in "User", with: @inventory.user_id
     click_on "Update Inventory"
 

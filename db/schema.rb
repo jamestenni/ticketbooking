@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_12_09_075843) do
+ActiveRecord::Schema.define(version: 2021_12_10_120202) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -52,11 +52,11 @@ ActiveRecord::Schema.define(version: 2021_12_09_075843) do
 
   create_table "inventories", force: :cascade do |t|
     t.integer "user_id", null: false
-    t.integer "product_id", null: false
+    t.integer "ticket_id", null: false
     t.integer "quantity"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["product_id"], name: "index_inventories_on_product_id"
+    t.index ["ticket_id"], name: "index_inventories_on_ticket_id"
     t.index ["user_id"], name: "index_inventories_on_user_id"
   end
 
@@ -73,13 +73,13 @@ ActiveRecord::Schema.define(version: 2021_12_09_075843) do
 
   create_table "orderline_items", force: :cascade do |t|
     t.integer "order_id", null: false
-    t.integer "product_id", null: false
+    t.integer "ticket_id", null: false
     t.float "price"
     t.integer "quantity"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["order_id"], name: "index_orderline_items_on_order_id"
-    t.index ["product_id"], name: "index_orderline_items_on_product_id"
+    t.index ["ticket_id"], name: "index_orderline_items_on_ticket_id"
   end
 
   create_table "orders", force: :cascade do |t|
@@ -90,23 +90,21 @@ ActiveRecord::Schema.define(version: 2021_12_09_075843) do
     t.index ["user_id"], name: "index_orders_on_user_id"
   end
 
-  create_table "products", force: :cascade do |t|
-    t.string "type"
-    t.integer "chair_id"
-    t.integer "timetable_id"
-    t.string "name"
-    t.float "price"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["chair_id"], name: "index_products_on_chair_id"
-    t.index ["timetable_id"], name: "index_products_on_timetable_id"
-  end
-
   create_table "theaters", force: :cascade do |t|
     t.string "name"
     t.integer "number"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "tickets", force: :cascade do |t|
+    t.integer "chair_id", null: false
+    t.integer "timetable_id", null: false
+    t.float "price"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["chair_id"], name: "index_tickets_on_chair_id"
+    t.index ["timetable_id"], name: "index_tickets_on_timetable_id"
   end
 
   create_table "timetables", force: :cascade do |t|
@@ -133,13 +131,13 @@ ActiveRecord::Schema.define(version: 2021_12_09_075843) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "chairs", "theaters"
-  add_foreign_key "inventories", "products"
+  add_foreign_key "inventories", "tickets"
   add_foreign_key "inventories", "users"
   add_foreign_key "orderline_items", "orders"
-  add_foreign_key "orderline_items", "products"
+  add_foreign_key "orderline_items", "tickets"
   add_foreign_key "orders", "users"
-  add_foreign_key "products", "chairs"
-  add_foreign_key "products", "timetables"
+  add_foreign_key "tickets", "chairs"
+  add_foreign_key "tickets", "timetables"
   add_foreign_key "timetables", "movies"
   add_foreign_key "timetables", "theaters"
 end

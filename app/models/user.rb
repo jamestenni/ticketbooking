@@ -10,6 +10,6 @@ class User < ApplicationRecord
   validates :birthdate, presence: true
 
   has_many :inventories, dependent: :destroy
-  has_many :products, :through => :inventories
+  has_many :tickets, :through => :inventories
   has_many :orders, dependent: :destroy
 end

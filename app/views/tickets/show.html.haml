@@ -1,0 +1,16 @@
+.container.mt-3
+  %p#notice= notice
+
+  %p
+    %b Chair:
+    = @ticket.chair
+  %p
+    %b Timetable:
+    = @ticket.timetable
+  %p
+    %b Price:
+    = @ticket.price
+
+  = link_to 'Edit', edit_ticket_path(@ticket)
+  \|
+  = link_to 'Back', tickets_path
