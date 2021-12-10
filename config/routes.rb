@@ -18,5 +18,7 @@ Rails.application.routes.draw do
   get 'register', to: 'main#registerpage', as: 'register_page'
   post 'register', to: 'main#register'
 
+  get 'movie/:id', to: 'main#movietimetablepage', as: 'movie_timetable_page'
+
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

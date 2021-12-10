@@ -1,0 +1,40 @@
+#noShowtimeAvailable {
+  height: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#noShowtimeAvailable p {
+  margin: 0px;
+}
+
+.theaterBox {
+  border-top: 1px solid white;
+}
+
+.theaterBox .showTimeWrapper {
+  display: flex;
+}
+
+.theaterBox .showTimeWrapper .timeBox {
+  padding: 10px 20px;
+  border-radius: 10px;
+  margin-right: 1.5rem;
+}
+
+.timeBox.isShown {
+  background-color: #aaaaaa;
+  color: #616161;
+}
+
+.timeBox.notShown {
+  background-color: rgb(255, 191, 31);
+  color: black;
+}
+
+.timeBox.notShown:hover {
+  background-color: #ffa701;
+  color: black;
+  cursor: pointer;
+}

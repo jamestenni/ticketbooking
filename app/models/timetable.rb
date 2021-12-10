@@ -57,4 +57,8 @@ class Timetable < ApplicationRecord
     return Timetable.where("theater_id = ? AND datetime_start > ? AND id != ?", self.theater.id, self.datetime_start, self.id).order("datetime_start").limit(1)
   end
 
+  def is_already_shown()
+    return self.datetime_start.to_time < Time.now
+  end
+
 end

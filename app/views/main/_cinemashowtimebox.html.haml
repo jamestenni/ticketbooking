@@ -1,0 +1,17 @@
+- if ts.empty?
+  #noShowtimeAvailable
+    %h5 --- No Showtime Available ---
+- else
+  #theaterWrapper 
+    - ts.each do |theater_no, showtimes| 
+      .theaterBox.py-4
+        %h5= "Theater: #{theater_no} - #{Theater.find_by(number: theater_no).name}"
+        .showTimeWrapper.pt-3
+          - showtimes.each do |timetable|
+            - if timetable.is_already_shown()
+              .timeBox.isShown
+                = timetable.datetime_start.to_time.strftime('%H:%M')
+            - else
+              .timeBox.notShown
+                = timetable.datetime_start.to_time.strftime('%H:%M')
+

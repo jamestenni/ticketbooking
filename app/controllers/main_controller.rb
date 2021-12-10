@@ -50,6 +50,11 @@ class MainController < ApplicationController
     end
   end
 
+  def movietimetablepage
+    @movie = Movie.find(params[:id])
+    @timetable = @movie.get_showtime_7days
+  end
+
   private
     def initialize_new_user
       @user = User.new()

@@ -1,0 +1,84 @@
+:css
+  button.nav-link {
+    font-size: 1.3rem !important;
+    padding: 10px 20px !important;
+    background-color: #6f0000 !important;
+    color: white;
+    margin-right: 10px; 
+  }
+
+  button.nav-link.active {
+    background-color: #b95366 !important;
+  }
+
+%ul#pills-tab.nav.nav-pills.mb-3{:role => "tablist"}
+  -# %li.nav-item{:role => "presentation"}
+  -#   %button#pills-home-tab.nav-link.active{"aria-controls" => "pills-home", "aria-selected" => "true", "data-bs-target" => "#pills-home", "data-bs-toggle" => "pill", :role => "tab", :type => "button"} Home
+  -# %li.nav-item{:role => "presentation"}
+  -#   %button#pills-TEST-tab.nav-link{"aria-controls" => "pills-TEST", "aria-selected" => "false", "data-bs-target" => "#pills-TEST", "data-bs-toggle" => "pill", :role => "tab", :type => "button"} TEST
+  - seven_dates = (Date.today..Date.today+6.day).to_a
+  - seven_dates = seven_dates.map {|date| "#{date.day} #{Date::ABBR_MONTHNAMES[date.month]}"}
+  %li.nav-item{:role => "presentation"}
+    %button.nav-link.active{:id => "pills-day-0-tab", "aria-controls" => "pills-day-0", "aria-selected" => "false", "data-bs-target" => "#pills-day-0", "data-bs-toggle" => "pill", :role => "tab", :type => "button"}= seven_dates[0]
+  %li.nav-item{:role => "presentation"}
+    %button.nav-link{:id => "pills-day-1-tab", "aria-controls" => "pills-day-1", "aria-selected" => "false", "data-bs-target" => "#pills-day-1", "data-bs-toggle" => "pill", :role => "tab", :type => "button"}= seven_dates[1]
+  %li.nav-item{:role => "presentation"}
+    %button.nav-link{:id => "pills-day-2-tab", "aria-controls" => "pills-day-2", "aria-selected" => "false", "data-bs-target" => "#pills-day-2", "data-bs-toggle" => "pill", :role => "tab", :type => "button"}= seven_dates[2]
+  %li.nav-item{:role => "presentation"}
+    %button.nav-link{:id => "pills-day-3-tab", "aria-controls" => "pills-day-3", "aria-selected" => "false", "data-bs-target" => "#pills-day-3", "data-bs-toggle" => "pill", :role => "tab", :type => "button"}= seven_dates[3]
+  %li.nav-item{:role => "presentation"}
+    %button.nav-link{:id => "pills-day-4-tab", "aria-controls" => "pills-day-4", "aria-selected" => "false", "data-bs-target" => "#pills-day-4", "data-bs-toggle" => "pill", :role => "tab", :type => "button"}= seven_dates[4]
+  %li.nav-item{:role => "presentation"}
+    %button.nav-link{:id => "pills-day-5-tab", "aria-controls" => "pills-day-5", "aria-selected" => "false", "data-bs-target" => "#pills-day-5", "data-bs-toggle" => "pill", :role => "tab", :type => "button"}= seven_dates[5]
+  %li.nav-item{:role => "presentation"}
+    %button.nav-link{:id => "pills-day-6-tab", "aria-controls" => "pills-day-6", "aria-selected" => "false", "data-bs-target" => "#pills-day-6", "data-bs-toggle" => "pill", :role => "tab", :type => "button"}= seven_dates[6]
+
+  -# - z = 0
+  -# - (Date.today..Date.today+6.day).to_a.each do |date|
+  -#   - if date == Date.today
+  -#     %li.nav-item{:role => "presentation"}
+  -#       %button.nav-link.active{:id => "pills-day-#{z}-tab", "aria-controls" => "pills-day-#{z}", "aria-selected" => "true", "data-bs-target" => "pills-day-#{z}", "data-bs-toggle" => "pill", :role => "tab", :type => "button"}= "#{date.day} #{Date::ABBR_MONTHNAMES[date.month]}"  
+  -#   - else
+  -#     %li.nav-item{:role => "presentation"}
+  -#       %button.nav-link{:id => "pills-day-#{z}-tab" ,"aria-controls" => "pills-day-#{z}", "aria-selected" => "false", "data-bs-target" => "pills-day-#{z}", "data-bs-toggle" => "pill", :role => "tab", :type => "button"}= "#{date.day} #{Date::ABBR_MONTHNAMES[date.month]}"  
+  -#   - z += 1
+
+#pills-tabContent.tab-content
+  -# #pills-home.tab-pane.fade.show.active{"aria-labelledby" => "pills-home-tab", :role => "tabpanel"} 
+  -#   %p A
+  -#   %p B
+  -# #pills-TEST.tab-pane.fade{"aria-labelledby" => "pills-TEST-tab", :role => "tabpanel"} 
+  -#   %p TEST
+  -#   %p TEST2
+
+  .tab-pane.fade.show.active{:id => "pills-day-0", "aria-labelledby" => "pills-day-0-tab", :role => "tabpanel"} 
+    = render "cinemashowtimebox", number: 0, ts: timetable[0]
+  .tab-pane.fade{:id => "pills-day-1", "aria-labelledby" => "pills-day-1-tab", :role => "tabpanel"} 
+    = render "cinemashowtimebox", number: 1, ts: timetable[1]
+  .tab-pane.fade{:id => "pills-day-2", "aria-labelledby" => "pills-day-2-tab", :role => "tabpanel"} 
+    = render "cinemashowtimebox", number: 2, ts: timetable[2]
+  .tab-pane.fade{:id => "pills-day-3", "aria-labelledby" => "pills-day-3-tab", :role => "tabpanel"} 
+    = render "cinemashowtimebox", number: 3, ts: timetable[3]
+  .tab-pane.fade{:id => "pills-day-4", "aria-labelledby" => "pills-day-4-tab", :role => "tabpanel"} 
+    = render "cinemashowtimebox", number: 4, ts: timetable[4]
+  .tab-pane.fade{:id => "pills-day-5", "aria-labelledby" => "pills-day-5-tab", :role => "tabpanel"} 
+    = render "cinemashowtimebox", number: 5, ts: timetable[5]
+  .tab-pane.fade{:id => "pills-day-6", "aria-labelledby" => "pills-day-6-tab", :role => "tabpanel"} 
+    = render "cinemashowtimebox", number: 6, ts: timetable[6]
+
+  -# - (0..6).to_a.each do |z|
+  -#   - if z == 0
+  -#     .tab-pane.fade{:id => "pills-day#{z}", "aria-labelledby" => "pills-day#{z}-tab", :role => "tabpanel"} 
+  -#       = render "cinemashowtimebox", number: z
+  -#   - else
+  -#     .tab-pane.fade{:id => "pills-day#{z}", "aria-labelledby" => "pills-day#{z}-tab", :role => "tabpanel"} 
+  -#       = render "cinemashowtimebox", number: z
+
+  -# - (0..6).to_a.each do |z|
+  -#   - if z == 0
+  -#     .tab-pane.fade.show.active{:id => "pills-day-#{z}", "aria-labelledby" => "pills-day-#{z}-tab", :role => "tabpanel"} 
+  -#       = render "cinemashowtimebox", number: z
+  -#   - else
+  -#     .tab-pane.fade{:id => "pills-day-#{z}", "aria-labelledby" => "pills-day-#{z}-tab", :role => "tabpanel"} 
+  -#       = render "cinemashowtimebox", number: z
+

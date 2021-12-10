@@ -21,8 +21,11 @@
   border-top-right-radius: var(--movie-card-border-radius);
 }
 
-.movieCard .movieDateIn {
+.movieDateIn {
   color: rgb(255, 191, 31);
+}
+
+.movieCard .movieDateIn {
   padding-left: 0.8rem;
   padding-right: 0.8rem;
 }
@@ -40,14 +43,14 @@
   left: 0.8rem;
 }
 
-.movieCard .footermovieCard .smallIcon {
+.smallIcon {
   background-color: #d3d3d3;
   border: 1px white solid;
   text-align: center;
   border-radius: 10px;
 }
 
-.movieCard .footermovieCard .smallIcon p {
+.smallIcon p {
   margin-bottom: 0px;
   padding: 0.2rem 0.8rem;
   font-size: 0.7rem;

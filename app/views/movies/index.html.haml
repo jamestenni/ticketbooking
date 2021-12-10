@@ -4,6 +4,7 @@
   %table.table.table-striped.table-sm
     %thead
       %tr
+        %th id
         %th Name
         %th Movie type
         %th Description
@@ -17,6 +18,7 @@
     %tbody
       - @movies.each do |movie|
         %tr
+          %th= movie.id
           %td= movie.name
           %td= movie.movie_type
           %td= movie.description
