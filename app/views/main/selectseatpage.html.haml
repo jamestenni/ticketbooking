@@ -4,7 +4,7 @@
   .darkBackgroundContainer#mainBg
     .movieWrapper
       #backButtonWrapper
-        .backButton{onclick: "location.href='#{main_page_path}'"}
+        .backButton{onclick: "location.href='#{movie_timetable_page_path(@movie.id)}'"}
           %svg{xmlns:"http://www.w3.org/2000/svg",width:"20",height:"20",fill:"currentColor",class:"bi bi-arrow-left",viewBox:"0 0 16 16"}
             %path{"fill-rule":"evenodd", d:"M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z"}
       #contentWrapper{style: "color: white; overflow: scroll"}
@@ -21,10 +21,12 @@
                 %p= "#{@movie.duration} min"
             %h6.mt-5{style: "font-weight: bolder"} Abstract
             %p= @movie.description
-        #timetableWrapper.mt-5
-          = render "timetable", timetable: @timetable
-
-    -# %h3.mb-4.ms-4#test Hello World
+        #showTimeDataWrapper.mt-4.p-2
+          %h5= "Date: #{@timetable.get_show_date}"
+          %h5= "Theater: #{@timetable.theater.number} - #{@timetable.theater.name}"
+          %h5= "Time: #{@timetable.get_show_time}"
+        #seatSelectWrapper
+          
 
 :javascript
   $(document).ready(function() {

@@ -10,8 +10,10 @@
           - showtimes.each do |timetable|
             - if timetable.is_already_shown()
               .timeBox.isShown
-                = timetable.datetime_start.to_time.strftime('%H:%M')
+                %div{"data-movie-id": "#{timetable.movie_id}", "data-timetable-id": "#{timetable.id}"}
+                  = timetable.datetime_start.to_time.strftime('%H:%M')
             - else
               .timeBox.notShown
-                = timetable.datetime_start.to_time.strftime('%H:%M')
+                %div{"data-movie-id": "#{timetable.movie_id}", "data-timetable-id": "#{timetable.id}", onclick: "location.href='#{select_seat_page_path(m_id: timetable.movie_id, s_id: timetable.id)}'"}
+                  = timetable.datetime_start.to_time.strftime('%H:%M')
 

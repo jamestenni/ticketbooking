@@ -61,4 +61,15 @@ class Timetable < ApplicationRecord
     return self.datetime_start.to_time < Time.now
   end
 
+  def get_show_date()
+    day = self.datetime_start.to_date.day.to_s
+    month_abbr = Date::ABBR_MONTHNAMES[self.datetime_start.to_date.month]
+    year = self.datetime_start.to_date.year
+    return "#{day} #{month_abbr} #{year}"
+  end
+
+  def get_show_time()
+    return self.datetime_start.to_time.strftime('%H:%M')
+  end
+
 end
