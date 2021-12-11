@@ -7,6 +7,8 @@
         .backButton
           %svg{xmlns:"http://www.w3.org/2000/svg",width:"20",height:"20",fill:"currentColor",class:"bi bi-arrow-left",viewBox:"0 0 16 16"}
             %path{"fill-rule":"evenodd", d:"M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z"}
+          %span
+            = button_to '', order_cancel_page_path(o_id: @order.id)
       #contentWrapper{style: "color: white; margin-bottom: 100px; overflow: scroll"}
         %h3#orderSummaryLabel.mt-2 Order Summary
         #orderInformationContainer.mt-4
@@ -23,9 +25,9 @@
             %h5#priceLabel.ms-2= "#{@order.get_total_price}"
             %h5.ms-2 THB
           #navigationContainer
-            = button_to 'Cancel', "#", class: "custom-button cancel"
+            = button_to 'Cancel', order_cancel_page_path(o_id: @order.id), class: "custom-button cancel"
             = button_to 'Confirm', "#", class: "ms-4 custom-button confirm"
-          
+        %h6.text-danger.mt-3{style: "text-align: center"} Warning: If you leave this page, this order will be automatically canceled
           
 :css
   #orderSummaryWrapper {
@@ -103,6 +105,27 @@
 
   .custom-button.cancel:hover {
     background-color: #8b0000;
+  }
+
+  .backButton {
+    display: block;
+    position: relative;
+    cursor: pointer;
+  }
+
+  .backButton span {
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+
+  .backButton span input {
+    width: 45px;
+    height: 40px;
+    border-radius: 20px;
+    background-color: yellow;
+    opacity: 0;
+    z-index: 2;
   }
 
 

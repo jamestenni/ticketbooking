@@ -12,4 +12,12 @@ class User < ApplicationRecord
   has_many :inventories, dependent: :destroy
   has_many :tickets, :through => :inventories
   has_many :orders, dependent: :destroy
+
+  def change_waiting_order_to_cancel
+    waiting_orders = Order.joins(:user).where("user_id = ? AND status = ?", self.id, 0)
+    waiting_orders.each do |waiting_order|
+      waiting_order.status = "canceled"
+      waiting_order.save
+    end
+  end
 end

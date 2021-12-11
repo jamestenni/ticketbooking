@@ -7,6 +7,11 @@ class MainController < ApplicationController
 
   def mainpage
     @isLoggedIn = has_logged_in
+
+    if @isLoggedIn 
+      @user.change_waiting_order_to_cancel
+    end
+
     # @movies_now_showing = Movie.get_now_showing.in_groups_of(3, false)
     @movies_now_showing = Movie.get_now_showing
   end
@@ -28,6 +33,8 @@ class MainController < ApplicationController
   end
 
   def logout
+    User.find_by(id: session[:user_id]).change_waiting_order_to_cancel
+    
     session[:user_id] = nil #clear session
     session[:previous_url] = nil
     @user = nil
@@ -55,12 +62,22 @@ class MainController < ApplicationController
 
   def movietimetablepage
     @isLoggedIn = has_logged_in
+
+    if @isLoggedIn 
+      @user.change_waiting_order_to_cancel
+    end
+
     @movie = Movie.find(params[:id])
     @timetable = @movie.get_showtime_7days
   end
 
   def selectseatpage
     @isLoggedIn = has_logged_in
+
+    if @isLoggedIn 
+      @user.change_waiting_order_to_cancel
+    end
+
     @movie = Movie.find(params[:m_id])
     @timetable = Timetable.find(params[:s_id])
     @tickets = @timetable.get_tickets
@@ -85,6 +102,7 @@ class MainController < ApplicationController
       end
     end
 
+    #if the chose seats, has been taken by other users
     if !all_seat_available
       redirect_to session[:previous_url], alert: "Chosen seats are not available at this moment, try others"
       session[:previous_url] = nil
@@ -104,7 +122,8 @@ class MainController < ApplicationController
 
       OrderlineItem.create(order_id: @order.id, ticket_id: ticket_id, price: Ticket.find_by(id: ticket_id).price, quantity: 1)
     end
-    redirect_to order_summary_page(order_id: @order.id)
+
+    redirect_to order_summary_page_path(o_id: @order.id)
     # puts "--------------------------------------"
     # puts tickets_id_select
     # puts "--------------------------------------"
@@ -128,7 +147,13 @@ class MainController < ApplicationController
       redirect_to main_page_path(), alert: "You don't have permission."
     end
 
-    
+    @order.status = "canceled"
+    if (!session[:previous_url].nil?)
+      redirect_to session[:previous_url], alert: "Your order has been canceled"
+      session[:previous_url] = nil
+    else
+      redirect_to main_page_path(), alert: "Your order has been canceled"
+    end
   end
 
   private

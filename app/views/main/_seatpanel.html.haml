@@ -41,8 +41,9 @@
                       = form.check_box :"ticket-#{ticket.id}", class: "checkbox", "data-seat-type": "premium"
                       %span.customCheckBox.premium
                         %p= ticket.chair.column
-    #alertContainer.mt-2
-      %h6.text-danger.mt-3{style: "text-align: center"} #{alert}
+    - if !alert.nil?
+      #alertContainer.mt-2
+        %h6.text-danger.mt-3{style: "text-align: center"} #{alert}
     #summaryContainer.mt-2
       #priceContainer
         %h5 Total:
