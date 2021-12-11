@@ -30,6 +30,7 @@ html {
 
 body {
   font-family: "Roboto", sans-serif !important;
+  height: 100%;
 }
 
 a.nav-link {
@@ -63,6 +64,7 @@ li.nav-item a {
   /* width: 100% !important; */
   /* min-width: 975px; */
   background-image: linear-gradient(var(--main-background-color) 5%, black 95%);
+  height: 100%;
 }
 
 .darkBackground.full-lock-screen {

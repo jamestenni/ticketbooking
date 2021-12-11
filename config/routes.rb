@@ -21,5 +21,8 @@ Rails.application.routes.draw do
   get 'movie/:id', to: 'main#movietimetablepage', as: 'movie_timetable_page'
   get 'movie/:m_id/showtime/:s_id', to: 'main#selectseatpage', as: 'select_seat_page'
 
+  post 'order/create', to: 'main#createorder', as: 'order_create_page'
+  post 'order/cancel/:o_id', to: 'main#cancelorder', as: 'order_cancel_page'
+  get 'order/summary/:o_id', to: 'main#ordersummarypage', as: 'order_summary_page'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

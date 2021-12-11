@@ -5,6 +5,7 @@
     %thead
       %tr
         %th Order_id
+        %th Username
         %th Ticket_id
         %th Price
         %th Quantity
@@ -16,6 +17,7 @@
       - @orderline_items.each do |orderline_item|
         %tr
           %td= orderline_item.order.id
+          %td= orderline_item.order.user.username
           %td= orderline_item.ticket.id
           %td= orderline_item.price
           %td= orderline_item.quantity

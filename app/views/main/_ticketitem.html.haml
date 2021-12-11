@@ -1,0 +1,26 @@
+- ticket = orderline_item.ticket
+.ticketItemContainer.mt-4
+  .posterContainer
+    = image_tag (ticket.timetable.movie.poster)
+  .ticketInfoContainer.ms-4
+    %h4= ticket.timetable.movie.name
+    .timetableinfoContainer.mt-4
+      #dateBox.boxIcon
+        %p= ticket.timetable.get_show_date
+        %p Date
+      #timeBox.ms-5.boxIcon
+        %p= ticket.timetable.get_show_time
+        %p Time
+      #theaterBox.ms-5.boxIcon
+        %p= ticket.timetable.theater.number
+        %p Theater
+      #seatBox.ms-5.boxIcon
+        %p= "#{ticket.chair.row}#{ticket.chair.column}"
+        %p Seat
+        
+  .priceContainer.ms-4
+    %p= "#{orderline_item.price.to_i} THB"
+    - if ticket.chair.chair_type == "Standard"
+      %div.standard.mt-1 Standard
+    - elsif ticket.chair.chair_type == "Premium"
+      %div.premium.mt-1 Premium

@@ -1,0 +1,117 @@
+= render "navbar"
+
+.darkBackground
+  .darkBackgroundContainer#mainBg
+    .movieWrapper
+      #backButtonWrapper
+        .backButton
+          %svg{xmlns:"http://www.w3.org/2000/svg",width:"20",height:"20",fill:"currentColor",class:"bi bi-arrow-left",viewBox:"0 0 16 16"}
+            %path{"fill-rule":"evenodd", d:"M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z"}
+      #contentWrapper{style: "color: white; margin-bottom: 100px; overflow: scroll"}
+        %h3#orderSummaryLabel.mt-2 Order Summary
+        #orderInformationContainer.mt-4
+          #dateTimeContainer
+            %h6= "Date: #{@order.get_order_placed_date}"
+            %h6.ms-3= "Time: #{@order.get_order_placed_time}"
+          %h6.mt-1= "#{@order.user.firstname} #{@order.user.lastname}"
+        #ticketItemListContainer
+          - @order.orderline_items.each do |orderline_item|
+            = render "ticketitem", orderline_item: orderline_item
+        #footerOrderSummaryContainer.mt-2
+          #priceContainer
+            %h5 Total:
+            %h5#priceLabel.ms-2= "#{@order.get_total_price}"
+            %h5.ms-2 THB
+          #navigationContainer
+            = button_to 'Cancel', "#", class: "custom-button cancel"
+            = button_to 'Confirm', "#", class: "ms-4 custom-button confirm"
+          
+          
+:css
+  #orderSummaryWrapper {
+    color: white;
+    margin-top: 100px;
+    padding: 20px;
+  }
+
+  #orderSummaryLabel {
+    text-align: center;
+    text-shadow: 1px 1px #ee7600;
+    color: #ecb753;
+  }
+
+  #orderInformationContainer {
+    padding: 10px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    border-top: 0.5px white solid;
+    border-bottom: 0.5px white solid;
+  }
+
+  #orderInformationContainer * {
+    margin-bottom: 0px;
+  }
+
+  #dateTimeContainer {
+    display: flex;
+    background-color: #844479;
+    padding: 5px 15px;
+  }
+
+  #ticketItemListContainer {
+    width: 100%;
+    padding-bottom: 20px;
+    border-bottom: 1px solid white;
+  }
+
+  #footerOrderSummaryContainer {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+  }
+
+  #navigationContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .custom-button {
+    padding: 8px 30px;
+    font-weight: bolder;
+    border-radius: 10px;
+    border: 0.5px solid #d3d3d3 !important;
+  }
+
+  .custom-button.confirm {
+    background-color: #0f3923;
+    color: white;
+  }
+
+  .custom-button.confirm:hover {
+    background-color: #1b663e;
+  }
+
+  .custom-button.cancel {
+    background-color: #530000;
+    color: white;
+  }
+
+  .custom-button.cancel:hover {
+    background-color: #8b0000;
+  }
+
+
+:javascript
+  $(document).ready(function() {
+    let window_h = $(window).height();
+    let backgorund_h = $("#mainBg").height();
+
+    if (backgorund_h < window_h) {
+      $(".darkBackground").addClass("full-lock-screen")
+    }
+  });

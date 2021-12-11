@@ -1,7 +1,9 @@
 class MainController < ApplicationController
   include SessionConcern 
   before_action :initialize_new_user, only: %i[ registerpage register ]
-  before_action :set_user, only: %i[ mainpage movietimetablepage selectseatpage]
+  before_action :set_user, only: %i[ mainpage movietimetablepage selectseatpage ordersummarypage createorder]
+  before_action :is_logged_in, only: %i[ ordersummarypage createorder ]
+  before_action :save_previous_url, only: %i[ selectseatpage ]
 
   def mainpage
     @isLoggedIn = has_logged_in
@@ -27,6 +29,7 @@ class MainController < ApplicationController
 
   def logout
     session[:user_id] = nil #clear session
+    session[:previous_url] = nil
     @user = nil
     redirect_to main_page_path()
   end
@@ -61,8 +64,71 @@ class MainController < ApplicationController
     @movie = Movie.find(params[:m_id])
     @timetable = Timetable.find(params[:s_id])
     @tickets = @timetable.get_tickets
+  end
 
-    puts  "******************************** isLogin #{@isLogin}"
+  def createorder
+    tickets_select = params.select{|key, value| key.to_s.include?("ticket-") and value.to_i == 1}.keys.to_a
+    tickets_id_select = tickets_select.map{|ticket_string| ticket_string[7..-1].to_i}
+    
+    if tickets_id_select.empty?
+      redirect_to session[:previous_url], alert: "You haven't pick any seat, please pick one to proceed"
+      session[:previous_url] = nil
+      return
+    end
+
+    all_seat_available = true
+    tickets_id_select.each do |ticket_id|
+      ticket = Ticket.find_by(id: ticket_id)
+      if ticket == nil or ticket.get_status() == "Reserved"
+        all_seat_available = false
+        break
+      end
+    end
+
+    if !all_seat_available
+      redirect_to session[:previous_url], alert: "Chosen seats are not available at this moment, try others"
+      session[:previous_url] = nil
+      return
+    end
+  
+    # if all seat is available, we will create an order for this user (status = "waiting" (0)) / also the orderline_items
+    @order = Order.create(user_id: @user.id, datetime_place: DateTime.now, status: 0)
+    tickets_id_select.each do |ticket_id|
+
+      puts "----------------------------------------------"
+      puts "order_id: #{@order.id}"
+      puts "ticket_id: #{ticket_id}"
+      puts "price: #{Ticket.find_by(id: ticket_id).price}"
+      puts "quantity: #{1}"
+      puts "----------------------------------------------"
+
+      OrderlineItem.create(order_id: @order.id, ticket_id: ticket_id, price: Ticket.find_by(id: ticket_id).price, quantity: 1)
+    end
+    redirect_to order_summary_page(order_id: @order.id)
+    # puts "--------------------------------------"
+    # puts tickets_id_select
+    # puts "--------------------------------------"
+    # puts all_seat_available
+  end
+
+  def ordersummarypage
+    @isLoggedIn = has_logged_in
+    @order = Order.find_by(id: params[:o_id])
+
+    if !is_order_owner(@order) #login but not the user who places an order
+      redirect_to main_page_path(), alert: "You don't have permission."
+    end
+  end
+
+  def cancelorder
+    @isLoggedIn = has_logged_in
+    @order = Order.find_by(id: params[:o_id])
+
+    if !is_order_owner(@order) #login but not the user who places an order
+      redirect_to main_page_path(), alert: "You don't have permission."
+    end
+
+    
   end
 
   private

@@ -17,6 +17,17 @@ module SessionConcern extend ActiveSupport::Concern
     end
   end
 
+  def save_previous_url
+    session[:previous_url] = "#{request.fullpath}"
+    puts "****************************************"
+    puts session[:previous_url]
+    # puts session[:user_id]
+  end
+
+  def is_order_owner(order)
+    return order.user.id == session[:user_id]
+  end
+
   # def logout
   #   session[:user_id] = nil
   #   @user = nil

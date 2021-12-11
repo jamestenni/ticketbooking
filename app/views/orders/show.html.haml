@@ -10,6 +10,12 @@
   %p
     %b Status:
     = @order.status
+  %p
+    %b OrderlineItems: 
+    %br
+    - @order.orderline_items.each do |o_item|
+      = "#{o_item.id}, #{o_item.ticket.id}" 
+      %br
 
   = link_to 'Edit', edit_order_path(@order)
   \|

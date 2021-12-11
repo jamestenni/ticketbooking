@@ -2,7 +2,12 @@
 
 .darkBackground
   .darkBackgroundContainer#mainBg
-    %h3#NowShowingTitle.mb-4.ms-4 Now showing
+    %h3#NowShowingTitle.mb-3.ms-4 Now showing
+
+    - if !alert.nil?
+      #alertContainer.mt-2
+        %h6.text-danger.ms-4.mb-4{style: "color: #f47174"}= "#{alert}"
+      
     .ps-3{style: "overflow: scroll;"}
       %table#MovieTable
         %tbody

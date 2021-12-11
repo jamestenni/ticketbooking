@@ -11,7 +11,7 @@
 }
 
 #seatTypeInfoContainer p,
-b {
+#seatTypeInfoContainer b {
   margin-bottom: 0px;
   color: white;
 }
@@ -60,7 +60,7 @@ b {
 #seatPanel {
   margin-bottom: 100px;
   width: 100%;
-  height: 500px;
+  /* height: 500px; */
   /* border: 1px solid grey; */
   padding: 20px;
   border-bottom: 1px solid white;
@@ -206,6 +206,10 @@ b {
 
 #priceContainer {
   display: flex;
+}
+
+#priceContainer * {
+  margin-bottom: 0;
 }
 
 #submitContainer {
