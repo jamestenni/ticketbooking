@@ -1,8 +1,8 @@
 class MainController < ApplicationController
   include SessionConcern 
   before_action :initialize_new_user, only: %i[ registerpage register ]
-  before_action :set_user, only: %i[ mainpage movietimetablepage selectseatpage ordersummarypage createorder]
-  before_action :is_logged_in, only: %i[ ordersummarypage createorder ]
+  before_action :set_user, only: %i[ mainpage inventorypage movietimetablepage selectseatpage ordersummarypage createorder cancelorder confirmorder confirmorderpage]
+  before_action :is_logged_in, only: %i[ inventorypage ordersummarypage createorder confirmorderpage]
   before_action :save_previous_url, only: %i[ selectseatpage ]
 
   def mainpage
@@ -12,8 +12,13 @@ class MainController < ApplicationController
       @user.change_waiting_order_to_cancel
     end
 
-    # @movies_now_showing = Movie.get_now_showing.in_groups_of(3, false)
     @movies_now_showing = Movie.get_now_showing
+  end
+
+  def inventorypage
+    @isLoggedIn = has_logged_in
+    # @tickets = @user.tickets
+    @tickets = Ticket.joins(:timetable, :inventory, :chair).where("user_id = ?", @user.id).order("datetime_start DESC, row ASC, column ASC")
   end
 
   def loginpage
@@ -148,11 +153,40 @@ class MainController < ApplicationController
     end
 
     @order.status = "canceled"
+    @order.save
     if (!session[:previous_url].nil?)
       redirect_to session[:previous_url], alert: "Your order has been canceled"
       session[:previous_url] = nil
     else
       redirect_to main_page_path(), alert: "Your order has been canceled"
+    end
+  end
+
+  def confirmorder
+    @isLoggedIn = has_logged_in
+    @order = Order.find_by(id: params[:o_id])
+    if !is_order_owner(@order) #login but not the user who places an order
+      redirect_to main_page_path(), alert: "You don't have permission."
+    end
+
+    # mark order status to completed
+    @order.status = "completed"
+    @order.save
+
+    # add all ticket in the order to the user's inventory
+    @order.tickets.each do |ticket|
+      Inventory.create(user_id: @order.user.id, ticket_id: ticket.id, quantity: 1)
+    end
+
+    redirect_to order_confirm_page_path()
+  end
+
+  def confirmorderpage
+    @isLoggedIn = has_logged_in
+    @order = Order.find_by(id: params[:o_id])
+
+    if !is_order_owner(@order) #login but not the user who places an order
+      redirect_to main_page_path(), alert: "You don't have permission."
     end
   end
 

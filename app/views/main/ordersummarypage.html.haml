@@ -18,7 +18,8 @@
           %h6.mt-1= "#{@order.user.firstname} #{@order.user.lastname}"
         #ticketItemListContainer
           - @order.orderline_items.each do |orderline_item|
-            = render "ticketitem", orderline_item: orderline_item
+            - ticket = orderline_item.ticket
+            = render "ticketitem", ticket: ticket, price: orderline_item.price.to_i
         #footerOrderSummaryContainer.mt-2
           #priceContainer
             %h5 Total:
@@ -26,7 +27,7 @@
             %h5.ms-2 THB
           #navigationContainer
             = button_to 'Cancel', order_cancel_page_path(o_id: @order.id), class: "custom-button cancel"
-            = button_to 'Confirm', "#", class: "ms-4 custom-button confirm"
+            = button_to 'Confirm', order_confirm_page_path(o_id: @order.id), class: "ms-4 custom-button confirm"
         %h6.text-danger.mt-3{style: "text-align: center"} Warning: If you leave this page, this order will be automatically canceled
           
 :css
@@ -87,6 +88,7 @@
     font-weight: bolder;
     border-radius: 10px;
     border: 0.5px solid #d3d3d3 !important;
+    cursor: pointer;
   }
 
   .custom-button.confirm {

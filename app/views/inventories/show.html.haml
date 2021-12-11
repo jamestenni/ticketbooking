@@ -1,15 +1,16 @@
-%p#notice= notice
+.container.mt-3
+  %p#notice= notice
 
-%p
-  %b User:
-  = @inventory.user
-%p
-  %b Ticket:
-  = @inventory.ticket
-%p
-  %b Quantity:
-  = @inventory.quantity
+  %p
+    %b User:
+    = @inventory.user
+  %p
+    %b Ticket:
+    = @inventory.ticket
+  %p
+    %b Quantity:
+    = @inventory.quantity
 
-= link_to 'Edit', edit_inventory_path(@inventory)
-\|
-= link_to 'Back', inventories_path
+  = link_to 'Edit', edit_inventory_path(@inventory)
+  \|
+  = link_to 'Back', inventories_path

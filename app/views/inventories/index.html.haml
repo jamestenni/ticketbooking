@@ -1,25 +1,26 @@
-%h1 Listing inventories
+.container.mt-3
+  %h1 Listing inventories
 
-%table
-  %thead
-    %tr
-      %th User
-      %th Ticket
-      %th Quantity
-      %th
-      %th
-      %th
-
-  %tbody
-    - @inventories.each do |inventory|
+  %table
+    %thead
       %tr
-        %td= inventory.user
-        %td= inventory.ticket
-        %td= inventory.quantity
-        %td= link_to 'Show', inventory
-        %td= link_to 'Edit', edit_inventory_path(inventory)
-        %td= link_to 'Destroy', inventory, method: :delete, data: { confirm: 'Are you sure?' }
+        %th Username
+        %th Ticket
+        %th Quantity
+        %th
+        %th
+        %th
 
-%br
+    %tbody
+      - @inventories.each do |inventory|
+        %tr
+          %td= inventory.user.username
+          %td= inventory.ticket.get_label
+          %td= inventory.quantity
+          %td= link_to 'Show', inventory
+          %td= link_to 'Edit', edit_inventory_path(inventory)
+          %td= link_to 'Destroy', inventory, method: :delete, data: { confirm: 'Are you sure?' }
 
-= link_to 'New Inventory', new_inventory_path
+  %br
+
+  = link_to 'New Inventory', new_inventory_path

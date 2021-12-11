@@ -4,9 +4,14 @@
   = f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present?
 
   .form-inputs
-    = f.association :user
-    = f.association :ticket
-    = f.input :quantity
+    = f.association :user, label_method: :username
+    = f.association :ticket, label_method: :get_label
+    = f.input :quantity, input_html: {readonly: true}, wrapper_html: {id: "quantityInput"}
 
   .form-actions
-    = f.button :submit
+    = f.button :submit, class: "btn btn-outline-dark my-3 ms-1"
+
+:javascript
+  $(document).ready(function() {
+    $("#quantityInput input").prop('value', 1)
+  });
