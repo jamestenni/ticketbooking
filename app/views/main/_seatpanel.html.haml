@@ -44,7 +44,7 @@
     #summaryContainer.mt-4
       #priceContainer
         %h5 Total:
-        %h5#priceLabel.ms-2 XXX
+        %h5#priceLabel.ms-2 0
         %h5.ms-2 THB
       - if @isLoggedIn
         #submitContainer
@@ -56,13 +56,24 @@
 
 :javascript
   $(document).ready(function() {
-    let premium_seat_count = 0
-    let standard_seat_count = 0
-
-    
-
-
-
-
-
+    console.log($("#priceLabel").text())
+    $(".checkbox").change(function () {
+      priceLabel = $("#priceLabel")
+      price = parseFloat(priceLabel.text())
+      seat_type = $(this).attr("data-seat-type")
+      if (this.checked) { //checked
+        if (seat_type == "standard") {
+          price += 160
+        } else if (seat_type == "premium") {
+          price += 180
+        }
+      } else { //unchecked
+        if (seat_type == "standard") {
+          price -= 160
+        } else if (seat_type == "premium") {
+          price -= 180
+        }
+      }
+      priceLabel.text(price.toString())
+    });
   });

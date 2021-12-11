@@ -42,18 +42,8 @@ b {
   background-color: #e75480;
 }
 
-.seat-icon.premium:hover {
-  background-color: #b44479;
-  cursor: pointer;
-}
-
 .seat-icon.standard {
   background-color: #ff964f;
-}
-
-.seat-icon.standard:hover {
-  background-color: #ee7600;
-  cursor: pointer;
 }
 
 .seat-icon.occupied {
@@ -192,6 +182,10 @@ b {
 }
 
 /* ----------------------------------------------- */
+
+#priceLabel {
+  color: #f7bd03;
+}
 
 .submit-form-button {
   padding: 8px 30px;

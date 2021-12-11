@@ -1,4 +1,7 @@
 class Chair < ApplicationRecord
+  STANDARD_PRICE = 160
+  PREMIUM_PRICE = 180
+
   belongs_to :theater
   validates :theater, uniqueness: {scope: [:row, :column]}
   validates :row, presence: true
@@ -12,10 +15,18 @@ class Chair < ApplicationRecord
 
   def price
     if self.chair_type == "Standard"
-      return 160
+      return STANDARD_PRICE
     elsif self.chair_type == "Premium"
-      return 180
+      return PREMIUM_PRICE
     end
+  end
+
+  def self.get_STANDARD_PRICE
+    return STANDARD_PRICE
+  end
+
+  def self.get_PREMIUM_PRICE
+    return PREMIUM_PRICE
   end
 
 end
