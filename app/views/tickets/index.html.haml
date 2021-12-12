@@ -1,11 +1,11 @@
 .container.mt-3
   %h1 Listing tickets
 
-  %table
+  %table#ticketTable
     %thead
       %tr
-        %th Chair
-        %th Timetable
+        %th Timetable_id
+        %th Chair_id
         %th Price
         %th
         %th
@@ -14,8 +14,8 @@
     %tbody
       - @tickets.each do |ticket|
         %tr
-          %td= ticket.chair.id
           %td= ticket.timetable.id
+          %td= ticket.chair.id
           %td= ticket.price
           %td= link_to 'Show', ticket
           %td= link_to 'Edit', edit_ticket_path(ticket)
@@ -24,3 +24,8 @@
   %br
 
   = link_to 'New Ticket', new_ticket_path
+
+:javascript
+  $(document).ready( function () {
+    $('#ticketTable').DataTable();
+  } );

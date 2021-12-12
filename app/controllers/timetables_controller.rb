@@ -3,7 +3,7 @@ class TimetablesController < ApplicationController
 
   # GET /timetables or /timetables.json
   def index
-    @timetables = Timetable.all
+    @timetables = Timetable.all.order("datetime_start ASC")
   end
 
   # GET /timetables/1 or /timetables/1.json

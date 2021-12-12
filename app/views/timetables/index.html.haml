@@ -1,9 +1,10 @@
 .container.mt-3 
   %h1 Listing timetables
 
-  %table
+  %table.table.table-striped.table-sm
     %thead
       %tr
+        %th Timetable_id
         %th Theater
         %th Movie
         %th Datetime start
@@ -15,6 +16,7 @@
     %tbody
       - @timetables.each do |timetable|
         %tr
+          %td= timetable.id          
           %td= timetable.theater.number
           %td= timetable.movie.name
           %td= timetable.datetime_start
