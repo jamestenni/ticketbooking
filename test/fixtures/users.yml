@@ -15,3 +15,11 @@ two:
   lastname: MyString
   email: MyString
   birthdate: 2021-12-05
+#--------------------------------------------------------
+user_test_login_1:
+  username: user_test_login_1
+  password_digest: <%= BCrypt::Password.create('123456') %>
+  firstname: user_test_login_1_firstname
+  lastname: user_test_login_1_lastname
+  email: user_test_login_1@hotmail.com
+  birthdate: 2000-12-17
