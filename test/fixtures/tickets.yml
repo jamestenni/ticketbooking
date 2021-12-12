@@ -1,11 +1,111 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  chair: one
-  timetable: one
-  price: 1.5
+# one:
+#   chair: one
+#   timetable: one
+#   price: 1.5
 
-two:
-  chair: two
-  timetable: two
-  price: 1.5
+# two:
+#   chair: two
+#   timetable: two
+#   price: 1.5
+
+ticket_1:
+  chair: chair_1
+  timetable: timetable_test_1
+  price: 180
+
+ticket_2:
+  chair: chair_2
+  timetable: timetable_test_1
+  price: 180
+
+ticket_3:
+  chair: chair_3
+  timetable: timetable_test_1
+  price: 180
+
+ticket_4:
+  chair: chair_4
+  timetable: timetable_test_1
+  price: 180
+
+ticket_5:
+  chair: chair_5
+  timetable: timetable_test_1
+  price: 180
+
+ticket_6:
+  chair: chair_6
+  timetable: timetable_test_1
+  price: 160
+
+ticket_7:
+  chair: chair_7
+  timetable: timetable_test_1
+  price: 160
+
+ticket_8:
+  chair: chair_8
+  timetable: timetable_test_1
+  price: 160
+
+ticket_9:
+  chair: chair_9
+  timetable: timetable_test_1
+  price: 160
+
+ticket_10:
+  chair: chair_10
+  timetable: timetable_test_1
+  price: 160
+
+ticket_11:
+  chair: chair_11
+  timetable: timetable_test_1
+  price: 160
+
+ticket_12:
+  chair: chair_12
+  timetable: timetable_test_1
+  price: 160
+
+ticket_13:
+  chair: chair_13
+  timetable: timetable_test_1
+  price: 160
+
+ticket_14:
+  chair: chair_14
+  timetable: timetable_test_1
+  price: 160
+
+ticket_15:
+  chair: chair_15
+  timetable: timetable_test_1
+  price: 160
+
+ticket_16:
+  chair: chair_16
+  timetable: timetable_test_1
+  price: 160
+
+ticket_17:
+  chair: chair_17
+  timetable: timetable_test_1
+  price: 160
+
+ticket_18:
+  chair: chair_18
+  timetable: timetable_test_1
+  price: 160
+
+ticket_19:
+  chair: chair_19
+  timetable: timetable_test_1
+  price: 160
+
+ticket_20:
+  chair: chair_20
+  timetable: timetable_test_1
+  price: 160

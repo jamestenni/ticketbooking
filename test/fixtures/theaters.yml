@@ -1,9 +1,17 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  name: MyString
+# one:
+#   name: MyString
+#   number: 1
+
+# two:
+#   name: MyString
+#   number: 1
+
+theater_test_1:
+  name: Pavalai
   number: 1
 
-two:
-  name: MyString
-  number: 1
+theater_test_2:
+  name: Supreme
+  number: 2

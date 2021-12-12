@@ -1,13 +1,133 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  row: MyString
-  column: 1
-  chair_type: 1
-  theater: one
+# one:
+#   row: MyString
+#   column: 1
+#   chair_type: 1
+#   theater: one
 
-two:
-  row: MyString
+# two:
+#   row: MyString
+#   column: 1
+#   chair_type: 1
+#   theater: two
+
+chair_1:
+  row: A
   column: 1
   chair_type: 1
-  theater: two
+  theater: theater_test_1
+
+chair_2:
+  row: A
+  column: 2
+  chair_type: 1
+  theater: theater_test_1
+
+chair_3:
+  row: A
+  column: 3
+  chair_type: 1
+  theater: theater_test_1
+
+chair_4:
+  row: A
+  column: 4
+  chair_type: 1
+  theater: theater_test_1
+
+chair_5:
+  row: A
+  column: 5
+  chair_type: 1
+  theater: theater_test_1
+
+chair_6:
+  row: B
+  column: 1
+  chair_type: 0
+  theater: theater_test_1
+
+chair_7:
+  row: B
+  column: 2
+  chair_type: 0
+  theater: theater_test_1
+
+chair_8:
+  row: B
+  column: 3
+  chair_type: 0
+  theater: theater_test_1
+
+chair_9:
+  row: B
+  column: 4
+  chair_type: 0
+  theater: theater_test_1
+
+chair_10:
+  row: B
+  column: 5
+  chair_type: 0
+  theater: theater_test_1
+
+chair_11:
+  row: C
+  column: 1
+  chair_type: 0
+  theater: theater_test_1
+
+chair_12:
+  row: C
+  column: 2
+  chair_type: 0
+  theater: theater_test_1
+
+chair_13:
+  row: C
+  column: 3
+  chair_type: 0
+  theater: theater_test_1
+
+chair_14:
+  row: C
+  column: 4
+  chair_type: 0
+  theater: theater_test_1
+
+chair_15:
+  row: C
+  column: 5
+  chair_type: 0
+  theater: theater_test_1
+
+chair_16:
+  row: D
+  column: 1
+  chair_type: 0
+  theater: theater_test_1
+
+chair_17:
+  row: D
+  column: 2
+  chair_type: 0
+  theater: theater_test_1
+
+chair_18:
+  row: D
+  column: 3
+  chair_type: 0
+  theater: theater_test_1
+
+chair_19:
+  row: D
+  column: 4
+  chair_type: 0
+  theater: theater_test_1
+
+chair_20:
+  row: D
+  column: 5
+  chair_type: 0
+  theater: theater_test_1

@@ -53,7 +53,9 @@ class OrdersController < ApplicationController
     if @order.status == "completed"
       orderline_items = @order.orderline_items
       orderline_items.each do |orderline_item|
-        Inventory.find_by(ticket_id: orderline_item.ticket_id).destroy
+        if !Inventory.find_by(ticket_id: orderline_item.ticket_id).nil?
+          Inventory.find_by(ticket_id: orderline_item.ticket_id).destroy
+        end
       end
     end
 

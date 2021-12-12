@@ -50,7 +50,7 @@ class Movie < ApplicationRecord
     # date_start = Date.today
 
     # ------------------- for testing purpose ------------------
-    datetime_start = DateTime.new(2021,12,13,0,0,0,"+0700")
+    datetime_start = DateTime.new(2021,12,20,0,0,0,"+0700")
     date_start = datetime_start.to_date
     # ----------------------------------------------------------
 
