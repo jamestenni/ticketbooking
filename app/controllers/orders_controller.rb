@@ -49,6 +49,14 @@ class OrdersController < ApplicationController
 
   # DELETE /orders/1 or /orders/1.json
   def destroy
+    # when the completed order is destroy, also remove the items bought by the user in the inventory
+    if @order.status == "completed"
+      orderline_items = @order.orderline_items
+      orderline_items.each do |orderline_item|
+        Inventory.find_by(ticket_id: orderline_item.ticket_id).destroy
+      end
+    end
+
     @order.destroy
     respond_to do |format|
       format.html { redirect_to orders_url, notice: "Order was successfully destroyed." }

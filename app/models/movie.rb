@@ -47,10 +47,16 @@ class Movie < ApplicationRecord
   def get_showtime_7days
     # Uncomment below line to let the code run from present time
     # datetime_start = DateTime.now 
+    # date_start = Date.today
+
+    # ------------------- for testing purpose ------------------
     datetime_start = DateTime.new(2021,12,13,0,0,0,"+0700")
+    date_start = datetime_start.to_date
+    # ----------------------------------------------------------
 
     seven_days_timetable = Timetable.where("movie_id = ?", self.id).where(datetime_start: datetime_start.midnight..datetime_start.midnight+7.day-1.minute).order("datetime_start ASC")
-    seven_dates = (Date.today..Date.today+6.day).to_a
+    seven_dates = (date_start..date_start+6.day).to_a
+    
     timetables_each_day =  [[], [], [], [], [], [], []]
     seven_days_timetable.each do |t| 
       day_no = seven_dates.find_index(t.datetime_start.to_date)

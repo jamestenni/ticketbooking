@@ -14,7 +14,9 @@
 %ul#pills-tab.nav.nav-pills.mb-3{:role => "tablist"}
   -# Uncomment below line to let the code run from present time
   -# - date_start = Date.today
+  -# ------------------- for testing purpose ------------------
   - date_start = Date.new(2021, 12, 13)
+  -# ----------------------------------------------------------
   - seven_dates = (date_start..date_start+7.day).to_a
   - seven_dates = seven_dates.map {|date| "#{date.day} #{Date::ABBR_MONTHNAMES[date.month]}"}
   %li.nav-item{:role => "presentation"}
