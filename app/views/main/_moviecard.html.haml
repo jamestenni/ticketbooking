@@ -1,5 +1,9 @@
 .movieCard{"data-movie-id": "#{movie.id}", onclick: "location.href='#{movie_timetable_page_path(movie.id)}'", style: "cursor: pointer;"}
-  = image_tag (movie.poster), style: "width: 100%; height: 360px", class: "mb-3"
+  - if movie.poster.attached?
+    = image_tag (movie.poster), style: "width: 100%; height: 360px", class: "mb-3"
+  - else
+    .dummyMoviePoster.mb-3
+      %p No Poster
   %h5.movieDateIn= movie.get_date_in
   - if movie.name.size <= 44
     %h4.movieName= movie.name

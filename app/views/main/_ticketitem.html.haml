@@ -1,7 +1,11 @@
 - if ticket.timetable.datetime_start > DateTime.now
   .ticketItemContainer.active-ticket.mt-4
     .posterContainer
-      = image_tag (ticket.timetable.movie.poster)
+      - if ticket.timetable.movie.poster.attached?
+        = image_tag (ticket.timetable.movie.poster)
+      - else
+        .dummyMoviePoster
+          %p{style: "color: #222222"} No Poster
     .ticketInfoContainer.ms-4
       %h4= ticket.timetable.movie.name
       .timetableinfoContainer.mt-4
@@ -19,6 +23,8 @@
           %p Seat
           
     .priceContainer.ms-4
+      - if price.nil?
+        - price = 0  
       %p= "#{price} THB"
       - if ticket.chair.chair_type == "Standard"
         %div.standard.mt-1 Standard

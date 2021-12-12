@@ -21,6 +21,18 @@
   border-top-right-radius: var(--movie-card-border-radius);
 }
 
+.movieCard .dummyMoviePoster {
+  width: 100%;
+  height: 360px;
+  border-top-left-radius: var(--movie-card-border-radius);
+  border-top-right-radius: var(--movie-card-border-radius);
+  overflow: hidden;
+  background-color: grey;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .movieDateIn {
   color: rgb(255, 191, 31);
 }

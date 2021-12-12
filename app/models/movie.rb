@@ -45,7 +45,11 @@ class Movie < ApplicationRecord
   end
 
   def get_showtime_7days
-    seven_days_timetable = Timetable.where("movie_id = ?", self.id).where(datetime_start: DateTime.now.midnight..DateTime.now.midnight+7.day-1.minute).order("datetime_start ASC")
+    # Uncomment below line to let the code run from present time
+    # datetime_start = DateTime.now 
+    datetime_start = DateTime.new(2021,12,13,0,0,0,"+0700")
+
+    seven_days_timetable = Timetable.where("movie_id = ?", self.id).where(datetime_start: datetime_start.midnight..datetime_start.midnight+7.day-1.minute).order("datetime_start ASC")
     seven_dates = (Date.today..Date.today+6.day).to_a
     timetables_each_day =  [[], [], [], [], [], [], []]
     seven_days_timetable.each do |t| 

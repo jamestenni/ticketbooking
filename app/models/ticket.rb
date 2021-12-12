@@ -6,7 +6,7 @@ class Ticket < ApplicationRecord
   has_many :orderline_items, dependent: :destroy
 
   def get_label()
-    return "id: #{self.id}, #{self.chair.row}#{self.chair.column}, #{self.chair.chair_type}, Theater_no: #{self.chair.theater.number}"
+    return "id: #{self.id}, #{self.chair.row}#{self.chair.column}, Theater_no: #{self.chair.theater.number}, #{self.timetable.movie.name}, #{self.timetable.get_show_date}, #{self.timetable.get_show_time}"
   end
 
   def get_status() 

@@ -27,8 +27,20 @@
 }
 
 .ticketItemContainer .posterContainer img {
+  width: 115px;
   height: 100%;
   border-radius: 20px;
+}
+
+.ticketItemContainer .posterContainer .dummyMoviePoster {
+  width: 115px;
+  height: 100%;
+  border-radius: 20px;
+  overflow: hidden;
+  background-color: grey;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .ticketItemContainer .ticketInfoContainer {
@@ -51,9 +63,11 @@
 
 .priceContainer p {
   font-size: 1.8rem;
+  text-align: center;
 }
 
 .priceContainer div {
+  width: 135px;
   padding: 2px 10px;
   text-align: center;
 }

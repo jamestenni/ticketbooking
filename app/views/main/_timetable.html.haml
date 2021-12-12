@@ -12,7 +12,10 @@
   }
 
 %ul#pills-tab.nav.nav-pills.mb-3{:role => "tablist"}
-  - seven_dates = (Date.today..Date.today+6.day).to_a
+  -# Uncomment below line to let the code run from present time
+  -# - date_start = Date.today
+  - date_start = Date.new(2021, 12, 13)
+  - seven_dates = (date_start..date_start+7.day).to_a
   - seven_dates = seven_dates.map {|date| "#{date.day} #{Date::ABBR_MONTHNAMES[date.month]}"}
   %li.nav-item{:role => "presentation"}
     %button.nav-link.active{:id => "pills-day-0-tab", "aria-controls" => "pills-day-0", "aria-selected" => "false", "data-bs-target" => "#pills-day-0", "data-bs-toggle" => "pill", :role => "tab", :type => "button"}= seven_dates[0]

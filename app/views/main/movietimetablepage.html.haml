@@ -10,7 +10,11 @@
       #contentWrapper{style: "color: white; overflow: scroll"}
         #movieInfoWrapper
           #moviePosterWrapper 
-            = image_tag (@movie.poster), style: "width: 100%; height: 360px"
+            - if @movie.poster.attached?
+              = image_tag (@movie.poster), style: "width: 100%; height: 360px"
+            - else
+              .dummyMoviePoster
+                %p{style: "color: #222222"} No Poster
           #movieDataWrapper.ms-5
             %h5.movieDateIn= @movie.get_date_in
             %h4.movieName= @movie.name
@@ -25,6 +29,18 @@
           = render "timetable", timetable: @timetable
 
     -# %h3.mb-4.ms-4#test Hello World
+
+:css
+  #moviePosterWrapper .dummyMoviePoster {
+    width: 100%;
+    height: 360px;
+    border-radius: 15px;
+    overflow: hidden;
+    background-color: grey;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 
 :javascript
   $(document).ready(function() {
