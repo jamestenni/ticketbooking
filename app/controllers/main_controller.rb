@@ -17,6 +17,10 @@ class MainController < ApplicationController
 
   def inventorypage
     @isLoggedIn = has_logged_in
+
+    if @isLoggedIn 
+      @user.change_waiting_order_to_cancel
+    end
     # @tickets = @user.tickets
     @tickets = Ticket.joins(:timetable, :inventory, :chair).where("user_id = ?", @user.id).order("datetime_start DESC, row ASC, column ASC")
   end
